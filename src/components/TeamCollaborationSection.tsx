@@ -1,0 +1,181 @@
+import { Lock, CreditCard } from 'lucide-react';
+
+const TeamCollaborationSection = () => {
+  const teamMembers = [
+    {
+      name: '4 Days, 3 Nights',
+      image: 'https://jonburtondesign.com/SecretShopper/images/images/Atlantis.png',
+      position: { top: '8%', right: '25%' },
+      delay: '0s'
+    },
+    {
+      name: 'All-Inclusive Dining',
+      image: 'https://jonburtondesign.com/SecretShopper/images/images/DREAMS.png',
+      position: { top: '42%', left: '12%' },
+      delay: '0.8s'
+    },
+    {
+      name: 'Premium Drinks',
+      image: 'https://jonburtondesign.com/SecretShopper/images/images/Secrets.png',
+      position: { top: '35%', right: '8%' },
+      delay: '1.6s'
+    },
+    {
+      name: 'Full Resort Access',
+      image: 'https://jonburtondesign.com/SecretShopper/images/images/VIDANTA.png',
+      position: { bottom: '18%', left: '32%' },
+      delay: '2.4s'
+    },
+    {
+      name: '$50 Gift Card',
+      image: 'https://jonburtondesign.com/SecretShopper/images/images/LIFESTYLE.png',
+      position: { bottom: '20%', right: '25%' },
+      delay: '3.2s'
+    }
+  ];
+
+  return (
+    <section className="relative py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-white overflow-hidden">
+      <style>{`
+        @keyframes float-wave {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-15px);
+          }
+        }
+      `}</style>
+
+      {/* Background decorative circles */}
+      <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-blue-50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/4"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-cyan-50 rounded-full blur-3xl opacity-40 translate-y-1/2 -translate-x-1/4"></div>
+
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center">
+          {/* Left side - Text content */}
+          <div className="relative space-y-4 md:space-y-6">
+            {/* Background map image */}
+            <div className="absolute -inset-8 md:-inset-16 pointer-events-none opacity-30 md:opacity-100">
+              <img
+                src="https://jonburtondesign.com/SecretShopper/images/Misc-graphics/Map-Mexico-8.png"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                Your Complete <br />Package<span className="text-blue-500">.</span>
+              </h2>
+              <div className="flex items-center gap-2 md:gap-3 text-gray-400 mt-4 md:mt-6">
+                <div className="w-8 md:w-12 h-px bg-gray-300"></div>
+                <p className="text-sm md:text-base lg:text-lg">Everything included for an unforgettable experience</p>
+              </div>
+              <div className="pt-3 md:pt-4">
+                <button
+                  onClick={() => document.getElementById('quiz')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-[#E9C52D] text-black font-bold text-sm md:text-base lg:text-lg px-4 md:px-6 lg:px-8 py-3 md:py-4 rounded-lg shadow-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-2 group w-full sm:w-auto justify-center"
+                >
+                  <span className="hidden sm:inline">BECOME A SECRET SHOPPER - START QUIZ</span>
+                  <span className="sm:hidden">START QUIZ NOW</span>
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right side - Circular diagram (hidden on mobile, simplified on tablet) */}
+          <div className="hidden md:block relative h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center">
+            {/* Outer circle border */}
+            <div className="absolute inset-0 flex items-center justify-center z-[1]">
+              <div className="w-[85%] md:w-[500px] lg:w-[600px] h-[85%] md:h-[500px] lg:h-[600px] rounded-full border-2 border-blue-200"></div>
+            </div>
+
+            {/* Middle circle with gradient */}
+            <div className="absolute inset-0 flex items-center justify-center z-[2]">
+              <div className="w-[70%] md:w-[380px] lg:w-[460px] h-[70%] md:h-[380px] lg:h-[460px] rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-2xl">
+                {/* Inner white circle */}
+                <div className="w-[calc(100%-40px)] md:w-[350px] lg:w-[420px] h-[calc(100%-40px)] md:h-[350px] lg:h-[420px] rounded-full bg-white flex items-center justify-center">
+                  {/* Center circle with avatar */}
+                  <div className="relative z-[3]">
+                    <div className="w-32 md:w-44 lg:w-56 h-32 md:h-44 lg:h-56 rounded-full border-4 border-cyan-400 overflow-hidden shadow-lg">
+                      <img
+                        src="https://jonburtondesign.com/SecretShopper/images/images/resort.jpg"
+                        alt="Luxury Resort"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Team member avatars positioned around the circle */}
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="absolute z-[4]"
+                style={{
+                  ...member.position,
+                  animation: 'float-wave 4s ease-in-out infinite',
+                  animationDelay: member.delay
+                }}
+              >
+                <div className="relative group">
+                  <div className="w-20 md:w-24 lg:w-32 h-20 md:h-24 lg:h-32 rounded-full overflow-hidden shadow-lg ring-4 ring-white transition-transform group-hover:scale-110">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Name label */}
+                  <div className="absolute -bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                    <div className="bg-white px-2 md:px-4 py-1 md:py-1.5 rounded-full shadow-md">
+                      <p className="text-xs md:text-sm lg:text-base text-gray-700 font-medium">{member.name}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Icon hexagons */}
+            <div className="absolute top-[15%] left-[28%] z-[5]">
+              <div className="w-14 md:w-16 lg:w-20 h-14 md:h-16 lg:h-20 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-45">
+                <Lock className="w-6 md:w-7 lg:w-9 h-6 md:h-7 lg:h-9 text-white -rotate-45 drop-shadow-md" />
+              </div>
+            </div>
+
+            <div className="absolute bottom-[15%] right-[10%] z-[5]">
+              <div className="w-14 md:w-16 lg:w-20 h-14 md:h-16 lg:h-20 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-45">
+                <CreditCard className="w-6 md:w-7 lg:w-9 h-6 md:h-7 lg:h-9 text-white -rotate-45 drop-shadow-md" />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile alternative - Simple card grid */}
+          <div className="md:hidden space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-xl shadow-md border border-blue-100">
+                  <div className="w-16 h-16 rounded-full overflow-hidden shadow-md ring-2 ring-white mx-auto mb-2">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-xs font-bold text-gray-900 text-center">{member.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TeamCollaborationSection;
