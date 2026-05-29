@@ -1,7 +1,8 @@
-import { Sparkles, Download } from 'lucide-react';
+import { useEffect } from 'react';
+import { Sparkles, Download, Send } from 'lucide-react';
 
 /**
- * Chatti integration mount + skeleton UI.
+ * Chatti integration mount + branded launcher card.
  *
  * Rendered as an inline section between the thank-you hero and the
  * "AS A SECRET SHOPPER, YOU RECEIVE:" section, elevated above both
@@ -11,13 +12,18 @@ import { Sparkles, Download } from 'lucide-react';
  * Uses the same content-wrapper structure as the homepage sections:
  *   container mx-auto px-4 > max-w-7xl mx-auto > card.
  *
- * The live Chatti widget mounts into `#chatti-mount` and may listen on
- * any of these signals fired from App.tsx on submission:
+ * Loads the live Chatti widget script on mount. Interactive elements
+ * inside the card (quick-reply chips + the input bar) call openChatti(),
+ * which dispatches to whichever Chatti window API is available.
+ *
+ * App.tsx also fires these submission signals the widget may listen on:
  *   - DOM event: window.addEventListener('secretshopper:submitted', ...)
  *   - dataLayer: window.dataLayer.push({ event: 'secretshopper_submitted' })
  *   - body attr: document.body.dataset.formSubmitted === 'true'
  */
 const CERTIFICATE_URL = 'https://directsalesincentives.com/pdfs/MTSS.pdf';
+const CHATTI_SCRIPT_URL =
+  'https://get.chattilive.ai/widgets/js/a1df788c-f06e-4d33-a26b-5248bab93bf2';
 
 const QUICK_QUESTIONS = [
   'How do I activate my certificate?',
@@ -26,7 +32,47 @@ const QUICK_QUESTIONS = [
   'How do I choose my travel dates?',
 ];
 
+interface ChattiLiveGlobal {
+  chat?: { openNew?: () => void; close?: () => void };
+  events?: { onChattiBubbleClick?: () => void };
+}
+
+function openChatti() {
+  if (typeof window === 'undefined') return;
+  const cl = (window as unknown as { chattiLive?: ChattiLiveGlobal }).chattiLive;
+
+  // Live widget exposes window.chattiLive.chat.openNew() — open a fresh chat
+  if (typeof cl?.chat?.openNew === 'function') {
+    cl.chat.openNew();
+    return;
+  }
+
+  // Fallback: simulate the launcher-bubble click (events.onChattiBubbleClick)
+  if (typeof cl?.events?.onChattiBubbleClick === 'function') {
+    cl.events.onChattiBubbleClick();
+    return;
+  }
+
+  // Last-resort fallback: click the rendered launcher element if present
+  const launcher = document.querySelector<HTMLElement>(
+    '#chattiLive-container [class*="bubble" i], #chattiLive-container button',
+  );
+  launcher?.click?.();
+}
+
 export default function ChattiPanel() {
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    if (document.querySelector('script[data-chatti-widget="true"]')) return;
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = CHATTI_SCRIPT_URL;
+    script.setAttribute('data-settings', '{"debug":false}');
+    script.setAttribute('data-chatti-widget', 'true');
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <div className="relative z-20 -mt-20 md:-mt-28 lg:-mt-36">
       <div className="container mx-auto px-4">
@@ -71,7 +117,7 @@ export default function ChattiPanel() {
                 </div>
               </div>
 
-              {/* Right: Chat conversation skeleton — replaced by live Chatti widget */}
+              {/* Right: Chat preview that launches the real Chatti widget on click */}
               <div className="lg:col-span-3 flex flex-col bg-gradient-to-b from-tan-50/40 via-white to-white">
                 <div className="bg-gray-50 border-b border-gray-200 px-4 md:px-5 py-2.5">
                   <div className="flex items-center gap-2 text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
@@ -106,8 +152,8 @@ export default function ChattiPanel() {
                         <button
                           key={q}
                           type="button"
-                          disabled
-                          className="text-left text-xs md:text-sm text-blue-700 font-semibold bg-blue-50 border border-blue-200 rounded-full px-3 py-1.5 disabled:cursor-not-allowed disabled:opacity-80"
+                          onClick={openChatti}
+                          className="text-left text-xs md:text-sm text-blue-700 font-semibold bg-blue-50 border border-blue-200 rounded-full px-3 py-1.5 hover:bg-blue-100 hover:border-blue-300 transition-colors cursor-pointer"
                         >
                           {q}
                         </button>
@@ -115,25 +161,24 @@ export default function ChattiPanel() {
                     </div>
                   </div>
 
-                  {/* Live Chatti widget mounts here */}
+                  {/* Live Chatti widget may mount here if it supports inline mode */}
                   <div id="chatti-mount" data-chatti-state="submitted"></div>
-
-                  <div className="mt-2 pt-3 border-t border-dashed border-gray-300 text-center">
-                    <p className="text-[11px] text-gray-400 italic">
-                      Chatti AI is loading… live conversation will load here.
-                    </p>
-                  </div>
                 </div>
 
                 <div className="border-t border-gray-200 bg-white px-4 md:px-5 py-3">
-                  <div className="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2.5">
-                    <input
-                      type="text"
-                      placeholder="Type your message…"
-                      disabled
-                      className="flex-1 bg-transparent text-sm text-gray-700 placeholder:text-gray-400 outline-none disabled:cursor-not-allowed"
-                    />
-                  </div>
+                  <button
+                    type="button"
+                    onClick={openChatti}
+                    className="w-full flex items-center gap-2 bg-gray-100 hover:bg-blue-50 rounded-full px-4 py-2.5 group transition-colors cursor-pointer text-left"
+                    aria-label="Open Chatti to start chatting"
+                  >
+                    <span className="flex-1 text-sm text-gray-500 group-hover:text-blue-700 transition-colors">
+                      Type your message to Chatti…
+                    </span>
+                    <span className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-700 to-teal-700 text-white flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <Send className="w-4 h-4" />
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
