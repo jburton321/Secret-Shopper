@@ -198,7 +198,7 @@ export default function QuizForm() {
               Please enter your contact information.
             </h3>
 
-            <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
                 required
@@ -207,9 +207,6 @@ export default function QuizForm() {
                 placeholder="First Name *"
                 className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
-            </div>
-
-            <div>
               <input
                 type="text"
                 required
@@ -220,7 +217,7 @@ export default function QuizForm() {
               />
             </div>
 
-            <div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <input
                 type="email"
                 required
@@ -229,21 +226,15 @@ export default function QuizForm() {
                 placeholder="Email Address *"
                 className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
-            </div>
-
-            <div>
               <input
                 type="tel"
                 required
                 value={formData.mobile_phone}
                 onChange={(e) => handlePhoneChange(e.target.value)}
-                placeholder="Mobile Phone (US only) *"
+                placeholder="Mobile Phone *"
                 maxLength={14}
                 className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
-            </div>
-
-            <div>
               <input
                 type="text"
                 required
