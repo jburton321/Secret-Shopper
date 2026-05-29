@@ -166,7 +166,7 @@ export default function QuizForm() {
                     <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div className="text-left">
-                    <div className="font-bold text-base text-gray-900">8 Partner Resorts</div>
+                    <div className="font-bold text-base text-gray-900">8 Partner Brands</div>
                     <div className="text-xs text-gray-600">In Mexico & the Caribbean</div>
                   </div>
                 </div>
