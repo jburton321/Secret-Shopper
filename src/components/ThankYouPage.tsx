@@ -1,4 +1,7 @@
-import { Check, MessageCircle, PartyPopper } from 'lucide-react';
+import { Check, Download, MessageCircle, PartyPopper } from 'lucide-react';
+
+const WELCOME_KIT_HREF = '/downloads/welcome-kit.pdf';
+const WELCOME_KIT_FILENAME = 'Secret-Shopper-Welcome-Kit.pdf';
 
 const PERKS = [
   '4 Days, 3 Nights all-inclusive resort stay — accommodations, meals & drinks',
@@ -44,6 +47,21 @@ export default function ThankYouPage() {
           A representative will call or text you within 1–2 business days to finalize your
           Secret Shopper consultation and discuss your resort match. Look out for our call!
         </p>
+      </div>
+
+      <div className="bg-gradient-to-br from-blue-600 to-teal-600 rounded-2xl shadow-xl p-6 md:p-10 mb-6 md:mb-8 text-center text-white">
+        <h3 className="text-xl md:text-2xl font-bold mb-2">Download Your Welcome Kit</h3>
+        <p className="text-blue-50 text-sm md:text-base mb-5 max-w-xl mx-auto">
+          Your Secret Shopper welcome guide, $50 gift card details, and what to expect — all in one PDF.
+        </p>
+        <a
+          href={WELCOME_KIT_HREF}
+          download={WELCOME_KIT_FILENAME}
+          className="inline-flex items-center gap-2 bg-[#E9C52D] text-black font-bold text-sm md:text-base px-6 md:px-8 py-3 md:py-4 rounded-lg shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300"
+        >
+          <Download className="w-5 h-5" />
+          DOWNLOAD WELCOME KIT (PDF)
+        </a>
       </div>
 
       <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 mb-6 md:mb-8">
