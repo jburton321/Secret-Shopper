@@ -241,9 +241,10 @@ function App() {
 
       <section className="pt-24 md:pt-28 lg:pt-32 pb-8 md:pb-12 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-primary-blue-950 mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-primary-blue-950 mb-2">
             Featured Resort Partners
           </h2>
+          <p className="text-center text-gray-600 text-xs sm:text-sm tracking-widest mb-6 md:mb-8">50+ PROPERTIES IN MEXICO & THE CARIBBEAN</p>
           <div className="relative">
             <div className="flex gap-12 animate-scroll items-center">
               <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
