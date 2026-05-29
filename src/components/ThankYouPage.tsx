@@ -9,12 +9,11 @@ import {
   FileCheck,
   Sparkles,
   KeyRound,
-  MessageCircle,
+  Mail,
   Phone,
 } from 'lucide-react';
 
-const WELCOME_KIT_HREF = '/downloads/welcome-kit.pdf';
-const WELCOME_KIT_FILENAME = 'Secret-Shopper-Welcome-Kit.pdf';
+const CERTIFICATE_URL = 'https://directsalesincentives.com/pdfs/MTSS.pdf';
 const HERO_VIDEO = 'https://jonburtondesign.com/SecretShopper/media/HERO.mp4';
 const RESORT_IMG = 'https://jonburtondesign.com/SecretShopper/images/images/resort.jpg';
 
@@ -82,25 +81,29 @@ export default function ThankYouPage() {
             </div>
 
             <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold text-white mb-5 md:mb-6 drop-shadow-lg">
-              Submission Complete — You're All Set!
+              Submission Complete — Your Welcome Email Is On Its Way!
             </h2>
 
             <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto drop-shadow-md">
-              A representative will call or text you within 1–2 business days to finalize your
-              Secret Shopper consultation and discuss your resort match. Look out for our call!
+              Check your inbox in the next few minutes for your Secret Shopper certificate and
+              next steps. Chatti (our assistant) is opening on the right to help you activate
+              your certificate and answer any questions — a representative will also call or
+              text within 1–2 business days.
             </p>
 
             <a
-              href={WELCOME_KIT_HREF}
-              download={WELCOME_KIT_FILENAME}
+              href={CERTIFICATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#E9C52D] text-black font-bold py-4 px-8 md:px-10 rounded-lg text-base md:text-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg"
             >
               <Download className="w-5 h-5 md:w-6 md:h-6" />
-              DOWNLOAD WELCOME KIT (PDF)
+              DOWNLOAD CERTIFICATE (PDF)
             </a>
-            <p className="text-white/70 text-xs md:text-sm mt-4">
-              PDF · Your $50 gift card details & what to expect
-            </p>
+            <div className="flex items-center justify-center gap-2 text-white/80 text-xs md:text-sm mt-4">
+              <Mail className="w-4 h-4" />
+              <span>A copy is also being emailed to you right now.</span>
+            </div>
           </div>
         </div>
       </section>
@@ -212,41 +215,70 @@ export default function ThankYouPage() {
         </div>
       </section>
 
-      {/* Chat widget section */}
+      {/* Support / "Chatti is open" section */}
       <section className="py-12 md:py-16 lg:py-20 bg-tan-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-6 md:mb-8">
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-blue-600" />
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-blue-950">
-                  Have a Question While You Wait?
-                </h2>
-              </div>
-              <p className="text-gray-700 text-base md:text-lg">
-                Chat with us below — our team is here to help.
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8 md:mb-10">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-blue-950 mb-3">
+                Have a Question Right Now?
+              </h2>
+              <p className="text-gray-700 text-base md:text-lg max-w-2xl mx-auto">
+                You've got three easy ways to get answers — Chatti can help you instantly.
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-xl p-4 md:p-6 lg:p-8">
-              <div className="bg-gradient-to-br from-blue-50 via-white to-teal-50 border-2 border-dashed border-gray-300 rounded-xl px-6 py-16 md:py-20 text-center">
-                <MessageCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-500 text-sm md:text-base font-medium tracking-wider">
-                  [ CHAT WIDGET EMBED AREA ]
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+              {/* Chatti card */}
+              <div className="bg-white rounded-2xl shadow-lg p-6 md:p-7 text-center hover:shadow-xl transition-shadow duration-300 border border-blue-100">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-700 to-teal-700 flex items-center justify-center shadow-lg">
+                  <Sparkles className="w-7 h-7 text-yellow-300" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-primary-blue-950 mb-2">
+                  Chat with Chatti
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-3">
+                  Already open on the right — our assistant has your certificate and answers
+                  ready.
+                </p>
+                <p className="text-xs text-gray-500 italic">
+                  Minimized? Use the floating chat button.
+                </p>
+              </div>
+
+              {/* Email card */}
+              <div className="bg-white rounded-2xl shadow-lg p-6 md:p-7 text-center hover:shadow-xl transition-shadow duration-300 border border-blue-100">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg">
+                  <Mail className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-primary-blue-950 mb-2">
+                  Check Your Inbox
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  Your welcome email with your certificate is on its way — usually arrives
+                  within a few minutes.
+                </p>
+              </div>
+
+              {/* Phone card */}
+              <div className="bg-white rounded-2xl shadow-lg p-6 md:p-7 text-center hover:shadow-xl transition-shadow duration-300 border border-blue-100">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-teal-600 flex items-center justify-center shadow-lg">
+                  <Phone className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-primary-blue-950 mb-2">
+                  Prefer to Call?
+                </h3>
+                <a
+                  href="tel:7027032479"
+                  className="inline-flex items-center gap-1.5 text-base md:text-lg font-bold text-blue-700 hover:text-blue-900 hover:underline"
+                >
+                  (702) 703-2479
+                </a>
+                <p className="text-xs md:text-sm text-gray-500 mt-1">
+                  Mon–Fri · 9am–6pm PT
                 </p>
               </div>
             </div>
-
-            <p className="text-center text-gray-700 text-sm md:text-base mt-6">
-              Or call us directly:{' '}
-              <a
-                href="tel:7027032479"
-                className="font-bold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1"
-              >
-                <Phone className="w-4 h-4" />
-                (702) 703-2479
-              </a>
-            </p>
           </div>
         </div>
       </section>

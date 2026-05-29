@@ -3,6 +3,7 @@ import { Phone, Check, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Star, 
 import QuizForm from './components/QuizForm';
 import TeamCollaborationSection from './components/TeamCollaborationSection';
 import ThankYouPage from './components/ThankYouPage';
+import ChattiPanel from './components/ChattiPanel';
 
 function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -12,12 +13,29 @@ function App() {
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [chattiOpen, setChattiOpen] = useState(false);
 
   useEffect(() => {
     if (submitted) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [submitted]);
+
+  const handleSubmitted = () => {
+    setSubmitted(true);
+    if (typeof window === 'undefined') return;
+
+    // 1) Body attribute hook for CSS/JS targeting
+    document.body.dataset.formSubmitted = 'true';
+
+    // 2) Custom DOM event for direct listeners
+    window.dispatchEvent(new CustomEvent('secretshopper:submitted'));
+
+    // 3) dataLayer push for analytics/tag-manager integrations
+    const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: 'secretshopper_submitted' });
+  };
 
   const resorts = [
     {
@@ -171,7 +189,11 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-tan-50">
+    <div
+      className={`min-h-screen bg-tan-50 transition-[padding] duration-300 ${
+        submitted && chattiOpen ? 'lg:pr-[400px]' : ''
+      }`}
+    >
       <header className="bg-primary-blue-950 text-tan-50 py-3 md:py-4 sticky top-0 z-40 shadow-lg">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center">
@@ -221,7 +243,7 @@ function App() {
             </div>
 
             <div id="quiz" className="bg-white/95 p-6 md:p-6 lg:p-8 rounded-2xl shadow-2xl flex flex-col">
-              <QuizForm onSubmitted={() => setSubmitted(true)} />
+              <QuizForm onSubmitted={handleSubmitted} />
             </div>
           </div>
         </div>
@@ -1271,6 +1293,8 @@ function App() {
           </div>
         </div>
       )}
+
+      <ChattiPanel active={submitted} isOpen={chattiOpen} onOpenChange={setChattiOpen} />
 
       {!submitted && (
         <div className="fixed bottom-0 left-0 right-0 bg-primary-blue-950 text-tan-50 py-2.5 sm:py-3 md:py-4 shadow-2xl z-50 border-t-4 border-teal-700">
