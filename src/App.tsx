@@ -963,7 +963,7 @@ function App() {
                     <strong>Effective Date:</strong> August 29, 2025
                   </p>
                   <p className="mb-4">
-                    Welcome to the ReviewThatResort.com and ShareLife Vacations Secret Shopper Program (the "Program"). By applying for, participating in, or using any part of the Program, you ("Participant," "you") agree to be bound by these Terms & Conditions. If you do not agree, you may not participate.
+                    Welcome to the ReviewThatResort.com and The Fulfillment Center Secret Shopper Program (the "Program"). By applying for, participating in, or using any part of the Program, you ("Participant," "you") agree to be bound by these Terms & Conditions. If you do not agree, you may not participate.
                   </p>
                 </div>
 
@@ -974,7 +974,7 @@ function App() {
                     <li>In some cases, Participants must apply as a couple between the ages of 35 and 70. Both individuals must meet Program and resort requirements.</li>
                     <li>Participants must provide accurate and complete information during application and throughout the Program.</li>
                     <li>Participants must possess valid travel documents when required, such as a government issued ID and passports for international travel.</li>
-                    <li>ReviewThatResort.com and ShareLife Vacations may deny, pause, or revoke participation for failure to meet eligibility requirements, misuse of the Program, or providing false information.</li>
+                    <li>ReviewThatResort.com and The Fulfillment Center may deny, pause, or revoke participation for failure to meet eligibility requirements, misuse of the Program, or providing false information.</li>
                   </ul>
                 </div>
 
@@ -1009,7 +1009,7 @@ function App() {
                 <div>
                   <h3 className="text-xl font-bold text-primary-blue-950 mb-3">5. Use of Participant Content</h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>By submitting feedback, reviews, images, or other materials ("Content"), you grant ReviewThatResort.com and ShareLife Vacations a non exclusive, royalty free, worldwide license to use, reproduce, distribute, adapt, and display the Content for Program operations, marketing, and reporting.</li>
+                    <li>By submitting feedback, reviews, images, or other materials ("Content"), you grant ReviewThatResort.com and The Fulfillment Center a non exclusive, royalty free, worldwide license to use, reproduce, distribute, adapt, and display the Content for Program operations, marketing, and reporting.</li>
                     <li>Content may be anonymized when shared with third parties unless you give explicit permission to attribute it.</li>
                   </ul>
                 </div>
@@ -1027,7 +1027,7 @@ function App() {
                 <div>
                   <h3 className="text-xl font-bold text-primary-blue-950 mb-3">7. Disclaimer of Liability</h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>ReviewThatResort.com, ShareLife Vacations, and their affiliates are not responsible for travel delays, cancellations, accidents, personal injury, loss, theft, or damages incurred during participation.</li>
+                    <li>ReviewThatResort.com, The Fulfillment Center, and their affiliates are not responsible for travel delays, cancellations, accidents, personal injury, loss, theft, or damages incurred during participation.</li>
                     <li>Resorts are independently owned and operated and are solely responsible for their facilities and services.</li>
                     <li>Participation is voluntary and at your own risk.</li>
                   </ul>
@@ -1036,7 +1036,7 @@ function App() {
                 <div>
                   <h3 className="text-xl font-bold text-primary-blue-950 mb-3">8. Program Modifications</h3>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li>ReviewThatResort.com and ShareLife Vacations may modify, suspend, or terminate the Program at any time without prior notice.</li>
+                    <li>ReviewThatResort.com and The Fulfillment Center may modify, suspend, or terminate the Program at any time without prior notice.</li>
                     <li>Terms may be updated from time to time. Continued participation means you accept the revised Terms.</li>
                   </ul>
                 </div>
@@ -1085,7 +1085,7 @@ function App() {
                     <strong>Effective Date:</strong> August 29, 2025 • <strong>Last Updated:</strong> August 29, 2025
                   </p>
                   <p className="mb-4">
-                    ShareLife Vacations and ReviewThatResort.com ("we," "our," "us") operate the ShareLife Vacations and ReviewThatResort.com websites and the ShareLife Secret Shopper Program ("Program"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, share, and safeguard information when you visit our websites or participate in the Program.
+                    The Fulfillment Center and ReviewThatResort.com ("we," "our," "us") operate The Fulfillment Center and ReviewThatResort.com websites and the Secret Shopper Program ("Program"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, share, and safeguard information when you visit our websites or participate in the Program.
                   </p>
                 </div>
 

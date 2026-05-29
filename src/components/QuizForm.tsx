@@ -167,7 +167,7 @@ export default function QuizForm() {
                   </div>
                   <div className="text-left">
                     <div className="font-bold text-base text-gray-900">8 Partner Resorts</div>
-                    <div className="text-xs text-gray-600">Top resorts worldwide</div>
+                    <div className="text-xs text-gray-600">In Mexico & the Caribbean</div>
                   </div>
                 </div>
               </div>
