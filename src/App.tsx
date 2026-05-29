@@ -122,7 +122,7 @@ function App() {
     },
     {
       question: 'What do I have to do as a secret shopper?',
-      answer: 'You simply experience the resort as a normal guest would—check in, enjoy the amenities, dine at restaurants, use the pools and beach. After your stay, you\'ll complete an online evaluation form (15-20 minutes) covering areas like check-in & staff service, room quality & cleanliness, dining & beverage quality, amenities & activities, and overall satisfaction. That\'s the full extent of your "work" as a secret shopper.',
+      answer: 'You simply experience the resort as a normal guest would—check in, enjoy the amenities, dine at restaurants, use the pools and beach. After your stay, you\'ll complete an online evaluation form (15-20 minutes) covering areas like check-in & staff service, room quality & cleanliness, dining & beverage quality, amenities, and overall satisfaction. That\'s the full extent of your "work" as a secret shopper.',
     },
     {
       question: 'How does selection work?',
@@ -336,7 +336,7 @@ function App() {
                       </div>
                       <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg md:rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg hover:scale-[1.02] cursor-pointer group">
                         <UtensilsCrossed className="w-5 h-5 md:w-6 md:h-6 text-teal-600 flex-shrink-0 group-hover:text-teal-700 group-hover:scale-110 transition-all duration-300" />
-                        <span className="text-sm md:text-base text-primary-blue-950 font-semibold group-hover:text-teal-700 transition-colors duration-300">Accommodations + All Meals + Drinks</span>
+                        <span className="text-sm md:text-base text-primary-blue-950 font-semibold group-hover:text-teal-700 transition-colors duration-300">Accommodations + Meals + Drinks</span>
                       </div>
                       <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg md:rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg hover:scale-[1.02] cursor-pointer group">
                         <Gift className="w-5 h-5 md:w-6 md:h-6 text-teal-600 flex-shrink-0 group-hover:text-teal-700 group-hover:scale-110 transition-all duration-300" />
@@ -421,7 +421,7 @@ function App() {
                 <h3 className="text-xl font-bold text-primary-blue-950 mb-3">Experience Luxury</h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                Enjoy 4 days and 3 nights at your matched resort with all meals, drinks, and amenities included. Travel as a normal guest.
+                Enjoy 4 days and 3 nights at your matched resort with meals, drinks, and often amenities included. Travel as a normal guest.
               </p>
             </div>
 
@@ -1050,7 +1050,7 @@ function App() {
 
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h3 className="text-xl font-bold text-primary-blue-950 mb-3">10. Contact Information</h3>
-                  <p className="mb-2"><strong>ReviewThatResort.com and ShareLife Vacations Secret Shopper Program</strong></p>
+                  <p className="mb-2"><strong>ReviewThatResort.com and The Fulfillment Center Secret Shopper Program</strong></p>
                   <p className="mb-1">Email: customercare@sharelife.vacations</p>
                   <p className="mb-1">Phone: (702) 703-2479</p>
                   <p>Mailing Address: ShareLife Vacations, LLC, 101 Convention Center Drive Ste 100, Las Vegas, NV 89109, USA</p>
@@ -1239,7 +1239,7 @@ function App() {
 
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h3 className="text-xl font-bold text-primary-blue-950 mb-3">Contact Information</h3>
-                  <p className="mb-2"><strong>ShareLife Vacations and ReviewThatResort.com</strong></p>
+                  <p className="mb-2"><strong>The Fulfillment Center and ReviewThatResort.com</strong></p>
                   <p className="mb-1">Email: customercare@sharelife.vacations</p>
                   <p className="mb-1">Phone: (702) 703-2479</p>
                   <p>Mailing Address: ShareLife Vacations, LLC, 101 Convention Center Drive Ste 100, Las Vegas, NV 89109, USA</p>
