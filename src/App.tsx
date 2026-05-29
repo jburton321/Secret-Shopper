@@ -192,9 +192,9 @@ function App() {
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center">
             <img
-              src="https://jonburtondesign.com/SecretShopper/images/logo/Logo-Main-Light.png"
+              src="/chatti-icon.png"
               alt="Secret Shopper Resort Program"
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-12 md:h-14 w-auto object-contain"
             />
           </div>
           <a href="tel:7027032479" className="flex items-center gap-1 md:gap-2 text-white font-bold hover:text-yellow-200 transition-colors text-sm md:text-base">
@@ -922,9 +922,9 @@ function App() {
           <div className="bg-white/95 p-4 sm:p-6 md:p-10 lg:p-12 rounded-xl md:rounded-2xl shadow-2xl max-w-4xl mx-auto">
             <div className="mb-4 md:mb-6 flex justify-center">
               <img
-                src="https://jonburtondesign.com/SecretShopper/images/logo/Logo-Main-Dark.png"
+                src="/chatti-icon.png"
                 alt="Secret Shopper Program"
-                className="h-14 sm:h-16 md:h-20 w-auto object-contain"
+                className="h-20 sm:h-24 md:h-28 w-auto object-contain"
               />
             </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4 lg:mb-6 px-2">Ready to Become a Resort Secret Shopper?</h2>
@@ -958,9 +958,9 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center">
             <img
-              src="https://jonburtondesign.com/SecretShopper/images/logo/Logo-Main-Light.png"
+              src="/chatti-icon.png"
               alt="Secret Shopper Resort Program"
-              className="h-16 w-auto object-contain mb-6"
+              className="h-20 md:h-24 w-auto object-contain mb-6"
             />
           <div className="text-center">
             <p className="mb-4 text-sm text-gray-300">
