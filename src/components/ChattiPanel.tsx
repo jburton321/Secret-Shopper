@@ -1,7 +1,8 @@
 import { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import { Download, Send } from 'lucide-react';
+import { Download, Send, MessageCircle } from 'lucide-react';
 
 const CHATTI_AVATAR_SRC = '/chatti-icon.png';
+const CHATTI_ANCHOR_ID = 'chatti-card';
 
 /**
  * Chatti integration — branded card that streams the live Chatti API
@@ -78,7 +79,9 @@ export default function ChattiPanel() {
   const [input, setInput] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [ready, setReady] = useState(false);
+  const [showReopen, setShowReopen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   // Inject the Chatti widget script + hide its auto-rendered UI so this
   // card is the only chat surface on the page.
@@ -172,6 +175,28 @@ export default function ChattiPanel() {
     el.scrollTop = el.scrollHeight;
   }, [messages, isSending]);
 
+  // Show the floating reopen pill only after the chat card has left the
+  // viewport (e.g. user has scrolled past it toward the perks/footer).
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      ([entry]) => setShowReopen(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const scrollBackToChat = () => {
+    const el = cardRef.current;
+    if (!el) return;
+    el.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
+
   const sendMessage = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || isSending) return;
@@ -219,10 +244,15 @@ export default function ChattiPanel() {
   const showGreetings = ready && messages.length === 0;
 
   return (
+    <>
     <div className="relative z-20 -mt-20 md:-mt-28 lg:-mt-36">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
+          <div
+            id={CHATTI_ANCHOR_ID}
+            ref={cardRef}
+            className="bg-white rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden scroll-mt-24"
+          >
             <div className="grid lg:grid-cols-5 items-stretch">
               {/* Left: Branded intro panel */}
               <div className="lg:col-span-2 bg-gradient-to-br from-blue-800 via-blue-700 to-teal-700 text-white p-5 md:p-6 lg:p-7 flex flex-col">
@@ -360,6 +390,36 @@ export default function ChattiPanel() {
         </div>
       </div>
     </div>
+
+    <button
+      type="button"
+      onClick={scrollBackToChat}
+      aria-label="Scroll back to chat with Chatti"
+      aria-hidden={!showReopen}
+      tabIndex={showReopen ? 0 : -1}
+      className={`fixed bottom-5 right-5 md:bottom-7 md:right-7 z-40 group flex items-center gap-2.5 md:gap-3 bg-gradient-to-br from-blue-700 via-blue-600 to-teal-700 text-white rounded-full p-1.5 sm:pl-1.5 sm:pr-4 md:pr-5 sm:py-2 shadow-2xl ring-2 ring-white/40 hover:scale-105 hover:shadow-blue-700/40 transition-all duration-300 ease-out ${
+        showReopen
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 translate-y-4 pointer-events-none'
+      }`}
+    >
+      <span className="relative flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-white overflow-hidden ring-2 ring-white shadow-inner flex-shrink-0">
+        <img
+          src={CHATTI_AVATAR_SRC}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-400 ring-2 ring-white animate-pulse"></span>
+      </span>
+      <span className="hidden sm:inline font-semibold text-xs md:text-sm tracking-wide whitespace-nowrap">
+        Chat with Chatti
+      </span>
+      <MessageCircle className="hidden sm:inline-block w-4 h-4 md:w-[18px] md:h-[18px] -ml-0.5 opacity-90" />
+    </button>
+    </>
   );
 }
 
