@@ -954,7 +954,7 @@ function App() {
       </>
       )}
 
-      <footer className="bg-primary-blue-950 text-white pt-8 md:pt-10 lg:pt-12 pb-16 md:pb-20">
+      <footer className="bg-primary-blue-950 text-white pt-8 md:pt-10 lg:pt-12 pb-36 sm:pb-32 md:pb-32 lg:pb-32">
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center">
             <img
