@@ -317,17 +317,7 @@ export default function ChattiPanel() {
                 >
                   {showGreetings && (
                     <>
-                      <ChattiBubble from="assistant">
-                        Hey, welcome to the Secret Shopper program! Your enrollment is
-                        confirmed — a welcome email with your <strong>certificate</strong>{' '}
-                        is on its way to your inbox.
-                      </ChattiBubble>
-                      <ChattiBubble from="assistant">
-                        I can walk you through activating it, answer questions about your
-                        trip, or help with the $50 gift card — what would you like to
-                        start with?
-                      </ChattiBubble>
-                      <div className="pt-1.5 sm:pt-2">
+                      <div className="pb-1 sm:pb-1.5">
                         <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1.5 sm:mb-2 font-semibold">
                           Quick questions
                         </p>
@@ -345,6 +335,16 @@ export default function ChattiPanel() {
                           ))}
                         </div>
                       </div>
+                      <ChattiBubble from="assistant">
+                        Hey, welcome to the Secret Shopper program! Your enrollment is
+                        confirmed — a welcome email with your <strong>certificate</strong>{' '}
+                        is on its way to your inbox.
+                      </ChattiBubble>
+                      <ChattiBubble from="assistant">
+                        I can walk you through activating it, answer questions about your
+                        trip, or help with the $50 gift card — what would you like to
+                        start with?
+                      </ChattiBubble>
                     </>
                   )}
 
