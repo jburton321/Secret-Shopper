@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Check, Loader2, PartyPopper, CheckCircle, Gift, MapPin } from 'lucide-react';
+import { Loader2, Gift, MapPin, CheckCircle } from 'lucide-react';
 import { submitLead } from '../lib/supabase';
+
+interface QuizFormProps {
+  onSubmitted?: () => void;
+}
 
 type VacationWith = 'My spouse or partner' | 'My spouse and/or my children' | 'I vacation with my friends' | 'I travel alone';
 type EmploymentStatus = 'Gainfully Employed' | 'Happily Retired' | 'Not Currently Working';
@@ -25,11 +29,10 @@ interface FormData {
   consent_terms_3: boolean;
 }
 
-export default function QuizForm() {
+export default function QuizForm({ onSubmitted }: QuizFormProps) {
   const [showForm, setShowForm] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [formData, setFormData] = useState<FormData>({
@@ -93,36 +96,8 @@ export default function QuizForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowThankYou(true);
+    onSubmitted?.();
   };
-
-  if (showThankYou) {
-    return (
-      <div className="bg-white p-8 rounded-lg shadow-xl max-w-2xl mx-auto">
-        <div className="text-center">
-          <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Check className="w-12 h-12 text-green-600" />
-          </div>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <PartyPopper className="w-8 h-8 text-blue-600" />
-            <h2 className="text-3xl font-bold text-gray-900">Thank you!</h2>
-          </div>
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <CheckCircle className="w-6 h-6 text-green-600" />
-            <h3 className="text-xl font-bold text-green-800">Submission Complete!</h3>
-          </div>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Check className="w-5 h-5 text-green-600" />
-            <h4 className="text-lg font-semibold text-gray-900">You're All Set!</h4>
-          </div>
-          <p className="text-gray-700">
-            A representative will call or text you within 1-2 business days to finalize your Secret Shopper
-            consultation and discuss your resort match. Look out for our call!
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   if (!showForm) {
     return (

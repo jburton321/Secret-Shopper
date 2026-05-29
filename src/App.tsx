@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Phone, Check, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Star, Clock, Ship, Search, MessageSquare, Gift, Award, Shield, TrendingUp, Hotel, Users, Calendar, Palmtree, Sparkles, DollarSign, MapPin, HelpCircle, Lightbulb, CheckCircle, Building2, Plane, KeyRound, FileCheck, PartyPopper, UtensilsCrossed } from 'lucide-react';
 import QuizForm from './components/QuizForm';
 import TeamCollaborationSection from './components/TeamCollaborationSection';
+import ThankYouPage from './components/ThankYouPage';
 
 function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -10,6 +11,13 @@ function App() {
   const [currentResort, setCurrentResort] = useState(1);
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (submitted) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [submitted]);
 
   const resorts = [
     {
@@ -180,6 +188,10 @@ function App() {
         </div>
       </header>
 
+      {submitted ? (
+        <ThankYouPage />
+      ) : (
+      <>
       <section className="relative py-12 md:py-16 lg:py-24 pb-28 md:pb-32 lg:pb-36 overflow-visible">
         <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-blue-900 to-teal-900">
           <video
@@ -209,7 +221,7 @@ function App() {
             </div>
 
             <div id="quiz" className="bg-white/95 p-6 md:p-6 lg:p-8 rounded-2xl shadow-2xl flex flex-col">
-              <QuizForm />
+              <QuizForm onSubmitted={() => setSubmitted(true)} />
             </div>
           </div>
         </div>
@@ -922,6 +934,9 @@ function App() {
           />
         </div>
       </section>
+
+      </>
+      )}
 
       <footer className="bg-primary-blue-950 text-white pt-8 md:pt-10 lg:pt-12 pb-16 md:pb-20">
         <div className="container mx-auto px-4">
