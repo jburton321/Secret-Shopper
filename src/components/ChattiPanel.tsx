@@ -87,7 +87,37 @@ export default function ChattiPanel() {
     if (!document.getElementById(styleId)) {
       const style = document.createElement('style');
       style.id = styleId;
-      style.textContent = '#chattiLive-container{display:none !important;}';
+      style.textContent = `
+        #chattiLive-container{display:none !important;}
+        .chatti-scroll{scrollbar-gutter:stable;}
+        .chatti-scroll::-webkit-scrollbar{
+          width:8px;
+          height:8px;
+          -webkit-appearance:none;
+        }
+        .chatti-scroll::-webkit-scrollbar-track{
+          background:rgba(15,118,110,0.08);
+          border-radius:9999px;
+          margin:6px 0;
+        }
+        .chatti-scroll::-webkit-scrollbar-thumb{
+          background-color:#1d4ed8;
+          background-image:linear-gradient(180deg,#1d4ed8 0%,#0d9488 100%);
+          border-radius:9999px;
+          background-clip:padding-box;
+          min-height:36px;
+        }
+        .chatti-scroll::-webkit-scrollbar-thumb:hover{
+          background-image:linear-gradient(180deg,#1e40af 0%,#0f766e 100%);
+        }
+        .chatti-scroll::-webkit-scrollbar-corner{background:transparent;}
+        @supports not selector(::-webkit-scrollbar){
+          .chatti-scroll{
+            scrollbar-width:thin;
+            scrollbar-color:#1d4ed8 rgba(15,118,110,0.08);
+          }
+        }
+      `;
       document.head.appendChild(style);
     }
 
@@ -245,7 +275,7 @@ export default function ChattiPanel() {
 
                 <div
                   ref={scrollRef}
-                  className="flex-1 px-4 md:px-5 lg:px-6 py-4 md:py-5 space-y-3 min-h-[220px] max-h-[380px] overflow-y-auto"
+                  className="chatti-scroll flex-1 px-4 md:px-5 lg:px-6 py-4 md:py-5 space-y-3 min-h-[220px] max-h-[380px] overflow-y-auto"
                 >
                   {showGreetings && (
                     <>
