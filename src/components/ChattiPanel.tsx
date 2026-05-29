@@ -255,9 +255,9 @@ export default function ChattiPanel() {
           >
             <div className="grid lg:grid-cols-5 items-stretch">
               {/* Left: Branded intro panel */}
-              <div className="lg:col-span-2 bg-gradient-to-br from-blue-800 via-blue-700 to-teal-700 text-white p-5 md:p-6 lg:p-7 flex flex-col">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white ring-2 ring-white/40 flex items-center justify-center flex-shrink-0 overflow-hidden shadow-md">
+              <div className="lg:col-span-2 bg-gradient-to-br from-blue-800 via-blue-700 to-teal-700 text-white p-4 sm:p-5 md:p-6 lg:p-7 flex flex-col">
+                <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white ring-2 ring-white/40 flex items-center justify-center flex-shrink-0 overflow-hidden shadow-md">
                     <img
                       src={CHATTI_AVATAR_SRC}
                       alt="Chatti — Secret Shopper Assistant"
@@ -267,18 +267,18 @@ export default function ChattiPanel() {
                     />
                   </div>
                   <div className="min-w-0">
-                    <div className="font-bold text-base md:text-lg leading-tight">Chatti</div>
-                    <div className="text-white/85 text-[11px] md:text-xs flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <div className="font-bold text-sm sm:text-base md:text-lg leading-tight">Chatti</div>
+                    <div className="text-white/85 text-[10px] sm:text-[11px] md:text-xs flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400 animate-pulse"></span>
                       Secret Shopper Assistant · Online
                     </div>
                   </div>
                 </div>
 
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2 leading-tight">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-1.5 sm:mb-2 leading-tight">
                   I'll help you activate your certificate.
                 </h3>
-                <p className="text-white/90 text-xs md:text-sm leading-relaxed mb-4">
+                <p className="text-white/90 text-[11px] leading-snug sm:text-xs sm:leading-relaxed md:text-sm mb-3 sm:mb-4">
                   Your enrollment is confirmed — a welcome email with your
                   certificate is on its way. Got questions? I'm right here.
                 </p>
@@ -287,21 +287,21 @@ export default function ChattiPanel() {
                   href={CERTIFICATE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#E9C52D] text-black font-bold text-xs md:text-sm px-4 py-2.5 rounded-lg hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-lg self-start"
+                  className="inline-flex items-center justify-center gap-2 bg-[#E9C52D] text-black font-bold text-[11px] sm:text-xs md:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-lg self-start"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   Download Certificate (PDF)
                 </a>
 
-                <div className="mt-auto pt-4 md:pt-5 text-white/60 text-[10px] uppercase tracking-widest">
+                <div className="mt-auto pt-3 sm:pt-4 md:pt-5 text-white/60 text-[10px] uppercase tracking-widest">
                   Powered by Chatti
                 </div>
               </div>
 
               {/* Right: Live chat — streams real Chatti API responses */}
               <div className="lg:col-span-3 flex flex-col bg-gradient-to-b from-tan-50/40 via-white to-white">
-                <div className="bg-gray-50 border-b border-gray-200 px-4 md:px-5 py-2.5">
-                  <div className="flex items-center gap-2 text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
+                <div className="bg-gray-50 border-b border-gray-200 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
                     <span
                       className={`w-1.5 h-1.5 rounded-full ${
                         ready ? 'bg-green-400 animate-pulse' : 'bg-gray-300'
@@ -313,7 +313,7 @@ export default function ChattiPanel() {
 
                 <div
                   ref={scrollRef}
-                  className="chatti-scroll flex-1 px-4 md:px-5 lg:px-6 py-4 md:py-5 space-y-3 min-h-[220px] max-h-[380px] overflow-y-auto"
+                  className="chatti-scroll flex-1 px-3 sm:px-4 md:px-5 lg:px-6 py-3 sm:py-4 md:py-5 space-y-2.5 sm:space-y-3 min-h-[160px] sm:min-h-[200px] md:min-h-[220px] max-h-[300px] sm:max-h-[340px] md:max-h-[380px] overflow-y-auto"
                 >
                   {showGreetings && (
                     <>
@@ -327,18 +327,18 @@ export default function ChattiPanel() {
                         trip, or help with the $50 gift card — what would you like to
                         start with?
                       </ChattiBubble>
-                      <div className="pt-2">
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-2 font-semibold">
+                      <div className="pt-1.5 sm:pt-2">
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1.5 sm:mb-2 font-semibold">
                           Quick questions
                         </p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {QUICK_QUESTIONS.map((q) => (
                             <button
                               key={q}
                               type="button"
                               onClick={() => sendMessage(q)}
                               disabled={isSending}
-                              className="text-left text-xs md:text-sm text-blue-700 font-semibold bg-blue-50 border border-blue-200 rounded-full px-3 py-1.5 hover:bg-blue-100 hover:border-blue-300 transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                              className="text-left text-[11px] sm:text-xs md:text-sm text-blue-700 font-semibold bg-blue-50 border border-blue-200 rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 hover:bg-blue-100 hover:border-blue-300 transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                             >
                               {q}
                             </button>
@@ -363,24 +363,24 @@ export default function ChattiPanel() {
 
                 <form
                   onSubmit={handleSubmit}
-                  className="border-t border-gray-200 bg-white px-4 md:px-5 py-3"
+                  className="border-t border-gray-200 bg-white px-3 sm:px-4 md:px-5 py-2 sm:py-3"
                 >
-                  <div className="flex items-center gap-2 bg-gray-100 focus-within:bg-blue-50 rounded-full px-4 py-2.5 transition-colors">
+                  <div className="flex items-center gap-2 bg-gray-100 focus-within:bg-blue-50 rounded-full px-3 sm:px-4 py-2 sm:py-2.5 transition-colors">
                     <input
                       type="text"
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       placeholder={ready ? 'Type your message to Chatti…' : 'Connecting to Chatti…'}
                       disabled={!ready || isSending}
-                      className="flex-1 bg-transparent text-sm text-gray-700 placeholder:text-gray-400 outline-none disabled:cursor-not-allowed"
+                      className="flex-1 bg-transparent text-xs sm:text-sm text-gray-700 placeholder:text-gray-400 outline-none disabled:cursor-not-allowed min-w-0"
                     />
                     <button
                       type="submit"
                       disabled={!ready || isSending || !input.trim()}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-700 to-teal-700 text-white flex items-center justify-center hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-blue-700 to-teal-700 text-white flex items-center justify-center hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex-shrink-0"
                       aria-label="Send message"
                     >
-                      <Send className="w-4 h-4" />
+                      <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
                   </div>
                 </form>
@@ -427,15 +427,15 @@ function ChattiBubble({ from, children }: { from: MessageRole; children: ReactNo
   if (from === 'requester') {
     return (
       <div className="flex justify-end">
-        <div className="bg-gradient-to-br from-blue-700 to-teal-700 text-white rounded-2xl rounded-tr-md px-4 py-3 shadow-sm max-w-[85%] text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+        <div className="bg-gradient-to-br from-blue-700 to-teal-700 text-white rounded-2xl rounded-tr-md px-3 sm:px-4 py-2 sm:py-3 shadow-sm max-w-[85%] text-xs leading-snug sm:text-sm sm:leading-relaxed md:text-base whitespace-pre-wrap">
           {children}
         </div>
       </div>
     );
   }
   return (
-    <div className="flex gap-2.5">
-      <div className="w-8 h-8 rounded-full bg-white ring-1 ring-blue-100 flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
+    <div className="flex gap-2 sm:gap-2.5">
+      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white ring-1 ring-blue-100 flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
         <img
           src={CHATTI_AVATAR_SRC}
           alt=""
@@ -445,8 +445,8 @@ function ChattiBubble({ from, children }: { from: MessageRole; children: ReactNo
           decoding="async"
         />
       </div>
-      <div className="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100 max-w-[88%]">
-        <div className="text-sm md:text-base text-gray-800 leading-relaxed whitespace-pre-wrap">
+      <div className="bg-white rounded-2xl rounded-tl-md px-3 sm:px-4 py-2 sm:py-3 shadow-sm border border-gray-100 max-w-[88%]">
+        <div className="text-xs leading-snug sm:text-sm sm:leading-relaxed md:text-base text-gray-800 whitespace-pre-wrap">
           {children}
         </div>
       </div>
