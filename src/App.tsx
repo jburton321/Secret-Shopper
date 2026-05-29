@@ -118,7 +118,7 @@ function App() {
     },
     {
       question: 'Can I choose which resort I evaluate as a secret shopper?',
-      answer: 'You\'ll select from available partner resorts based on your preferences (destination, travel style, dates). The quiz helps match you with resorts that fit your interests. While we can\'t guarantee a specific property, all our partners are highly-rated 4-5 star all-inclusive resorts, and we work to match you with your best fit.',
+      answer: 'Your travel dates and preferences are factored in, and The Fulfillment Center matches you with one of our partner resorts. While we can\'t guarantee a specific property, all our partners are highly-rated 4-5 star all-inclusive resorts, and we work to match you with the best available fit.',
     },
     {
       question: 'What do I have to do as a secret shopper?',
@@ -126,7 +126,7 @@ function App() {
     },
     {
       question: 'How does selection work?',
-      answer: 'You provide the dates you can travel. We match your dates with dates we have available at our newest resort affiliates.',
+      answer: 'The resort destination will be based on the dates you choose and selected by The Fulfillment Center.',
     },
     {
       question: 'What does the review involve?',
@@ -336,7 +336,7 @@ function App() {
                       </div>
                       <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg md:rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg hover:scale-[1.02] cursor-pointer group">
                         <UtensilsCrossed className="w-5 h-5 md:w-6 md:h-6 text-teal-600 flex-shrink-0 group-hover:text-teal-700 group-hover:scale-110 transition-all duration-300" />
-                        <span className="text-sm md:text-base text-primary-blue-950 font-semibold group-hover:text-teal-700 transition-colors duration-300">Accommodations + All Meals + Drinks + Activities</span>
+                        <span className="text-sm md:text-base text-primary-blue-950 font-semibold group-hover:text-teal-700 transition-colors duration-300">Accommodations + All Meals + Drinks</span>
                       </div>
                       <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg md:rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg hover:scale-[1.02] cursor-pointer group">
                         <Gift className="w-5 h-5 md:w-6 md:h-6 text-teal-600 flex-shrink-0 group-hover:text-teal-700 group-hover:scale-110 transition-all duration-300" />

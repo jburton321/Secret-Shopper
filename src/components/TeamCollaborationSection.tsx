@@ -15,7 +15,7 @@ const TeamCollaborationSection = () => {
       delay: '0.8s'
     },
     {
-      name: 'Premium Drinks',
+      name: 'Cocktails',
       image: 'https://jonburtondesign.com/SecretShopper/images/images/Secrets.png',
       position: { top: '35%', right: '8%' },
       delay: '1.6s'
@@ -86,21 +86,21 @@ const TeamCollaborationSection = () => {
             </div>
           </div>
 
-          {/* Right side - Circular diagram (hidden on mobile, simplified on tablet) */}
-          <div className="hidden md:block relative h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center">
+          {/* Right side - Circular diagram (now shown on all breakpoints) */}
+          <div className="relative h-[420px] sm:h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center">
             {/* Outer circle border */}
             <div className="absolute inset-0 flex items-center justify-center z-[1]">
-              <div className="w-[85%] md:w-[500px] lg:w-[600px] h-[85%] md:h-[500px] lg:h-[600px] rounded-full border-2 border-blue-200"></div>
+              <div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full border-2 border-blue-200"></div>
             </div>
 
             {/* Middle circle with gradient */}
             <div className="absolute inset-0 flex items-center justify-center z-[2]">
-              <div className="w-[70%] md:w-[380px] lg:w-[460px] h-[70%] md:h-[380px] lg:h-[460px] rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-2xl">
+              <div className="w-[230px] h-[230px] sm:w-[300px] sm:h-[300px] md:w-[380px] md:h-[380px] lg:w-[460px] lg:h-[460px] rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-2xl">
                 {/* Inner white circle */}
-                <div className="w-[calc(100%-40px)] md:w-[350px] lg:w-[420px] h-[calc(100%-40px)] md:h-[350px] lg:h-[420px] rounded-full bg-white flex items-center justify-center">
+                <div className="w-[200px] h-[200px] sm:w-[270px] sm:h-[270px] md:w-[350px] md:h-[350px] lg:w-[420px] lg:h-[420px] rounded-full bg-white flex items-center justify-center">
                   {/* Center circle with avatar */}
                   <div className="relative z-[3]">
-                    <div className="w-32 md:w-44 lg:w-56 h-32 md:h-44 lg:h-56 rounded-full border-4 border-cyan-400 overflow-hidden shadow-lg">
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44 lg:w-56 lg:h-56 rounded-full border-4 border-cyan-400 overflow-hidden shadow-lg">
                       <img
                         src="https://jonburtondesign.com/SecretShopper/images/images/resort.jpg"
                         alt="Luxury Resort"
@@ -124,7 +124,7 @@ const TeamCollaborationSection = () => {
                 }}
               >
                 <div className="relative group">
-                  <div className="w-20 md:w-24 lg:w-32 h-20 md:h-24 lg:h-32 rounded-full overflow-hidden shadow-lg ring-4 ring-white transition-transform group-hover:scale-110">
+                  <div className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden shadow-lg ring-4 ring-white transition-transform group-hover:scale-110">
                     <img
                       src={member.image}
                       alt={member.name}
@@ -132,9 +132,9 @@ const TeamCollaborationSection = () => {
                     />
                   </div>
                   {/* Name label */}
-                  <div className="absolute -bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-                    <div className="bg-white px-2 md:px-4 py-1 md:py-1.5 rounded-full shadow-md">
-                      <p className="text-xs md:text-sm lg:text-base text-gray-700 font-medium">{member.name}</p>
+                  <div className="absolute -bottom-5 sm:-bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                    <div className="bg-white px-1.5 sm:px-2 md:px-4 py-0.5 sm:py-1 md:py-1.5 rounded-full shadow-md">
+                      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-700 font-medium">{member.name}</p>
                     </div>
                   </div>
                 </div>
@@ -143,33 +143,15 @@ const TeamCollaborationSection = () => {
 
             {/* Icon hexagons */}
             <div className="absolute top-[15%] left-[28%] z-[5]">
-              <div className="w-14 md:w-16 lg:w-20 h-14 md:h-16 lg:h-20 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-45">
-                <Lock className="w-6 md:w-7 lg:w-9 h-6 md:h-7 lg:h-9 text-white -rotate-45 drop-shadow-md" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-45">
+                <Lock className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-9 lg:h-9 text-white -rotate-45 drop-shadow-md" />
               </div>
             </div>
 
             <div className="absolute bottom-[15%] right-[10%] z-[5]">
-              <div className="w-14 md:w-16 lg:w-20 h-14 md:h-16 lg:h-20 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-45">
-                <CreditCard className="w-6 md:w-7 lg:w-9 h-6 md:h-7 lg:h-9 text-white -rotate-45 drop-shadow-md" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-cyan-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-45">
+                <CreditCard className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-9 lg:h-9 text-white -rotate-45 drop-shadow-md" />
               </div>
-            </div>
-          </div>
-
-          {/* Mobile alternative - Simple card grid */}
-          <div className="md:hidden space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              {teamMembers.map((member, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-xl shadow-md border border-blue-100">
-                  <div className="w-16 h-16 rounded-full overflow-hidden shadow-md ring-2 ring-white mx-auto mb-2">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <p className="text-xs font-bold text-gray-900 text-center">{member.name}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>

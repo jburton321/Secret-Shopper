@@ -166,8 +166,8 @@ export default function QuizForm() {
                     <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div className="text-left">
-                    <div className="font-bold text-base text-gray-900">50+ Destinations</div>
-                    <div className="text-xs text-gray-600">Choose from top resorts worldwide</div>
+                    <div className="font-bold text-base text-gray-900">8 Partner Resorts</div>
+                    <div className="text-xs text-gray-600">Top resorts worldwide</div>
                   </div>
                 </div>
               </div>
@@ -266,7 +266,7 @@ export default function QuizForm() {
                 />
                 <span className="text-xs text-gray-700">
                   By clicking here you agree to receive promotional emails, SMS texts and calls, including pre-recorded
-                  messages and/or calls or texts made from an Auto-dial telephone dialing system from Sharelife Vacations,
+                  messages and/or calls or texts made from an Auto-dial telephone dialing system from The Fulfillment Center,
                   and its affiliates, parents and subsidiaries (text/data and other charges may apply) at the address/numbers
                   provided regardless of that number being on any Do not Call Registry. Your consent is not a condition of any purchase. *
                 </span>
@@ -528,7 +528,7 @@ export default function QuizForm() {
                   className="mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
                 />
                 <span className="text-sm text-gray-700">
-                  I understand I will receive complimentary resort accommodations (4 days/3 nights), including all meals, drinks, and resort amenities. I am responsible for my airfare and transportation from the airport to the resort.
+                  I understand I will receive complimentary resort accommodations (4 days/3 nights), including meals, drinks, and often resort amenities. I am responsible for my airfare and transportation from the airport to the resort.
                 </span>
               </label>
             </div>
