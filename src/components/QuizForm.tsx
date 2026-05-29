@@ -454,18 +454,25 @@ export default function QuizForm() {
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-gray-900 mb-4">What type of resort experience do you prefer?</h3>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {(['Adults-Only Luxury', 'Family-Friendly All-Inclusive', 'Adventure & Eco Resorts', 'Mega-Resorts with Entertainment', 'Boutique & Intimate Properties', 'Open to any 4-5 star resort'] as ResortPreference[]).map((option) => (
-                <label key={option} className="flex items-center gap-3 p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition-colors">
+                <label
+                  key={option}
+                  className={`flex items-center gap-3 p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                    formData.resort_preference === option
+                      ? 'border-blue-600 bg-blue-50'
+                      : 'border-gray-300 hover:border-blue-600 hover:bg-blue-50'
+                  }`}
+                >
                   <input
                     type="radio"
                     name="resort_preference"
                     value={option}
                     checked={formData.resort_preference === option}
                     onChange={(e) => setFormData({ ...formData, resort_preference: e.target.value as ResortPreference })}
-                    className="w-5 h-5 text-blue-600"
+                    className="w-5 h-5 text-blue-600 flex-shrink-0"
                   />
-                  <span className="text-gray-700 font-medium">{option}</span>
+                  <span className="text-gray-700 font-medium text-sm md:text-base">{option}</span>
                 </label>
               ))}
             </div>
