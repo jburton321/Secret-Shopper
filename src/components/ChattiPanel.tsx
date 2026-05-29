@@ -193,24 +193,24 @@ export default function ChattiPanel() {
           <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
             <div className="grid lg:grid-cols-5 items-stretch">
               {/* Left: Branded intro panel */}
-              <div className="lg:col-span-2 bg-gradient-to-br from-blue-800 via-blue-700 to-teal-700 text-white p-6 md:p-8 lg:p-10 flex flex-col">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/15 ring-2 ring-white/40 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-6 h-6 md:w-7 md:h-7 text-yellow-300" />
+              <div className="lg:col-span-2 bg-gradient-to-br from-blue-800 via-blue-700 to-teal-700 text-white p-5 md:p-6 lg:p-7 flex flex-col">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/15 ring-2 ring-white/40 flex items-center justify-center flex-shrink-0">
+                    <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-300" />
                   </div>
                   <div className="min-w-0">
-                    <div className="font-bold text-lg md:text-xl leading-tight">Chatti</div>
-                    <div className="text-white/85 text-xs md:text-sm flex items-center gap-1.5">
+                    <div className="font-bold text-base md:text-lg leading-tight">Chatti</div>
+                    <div className="text-white/85 text-[11px] md:text-xs flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                       Secret Shopper Assistant · Online
                     </div>
                   </div>
                 </div>
 
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 leading-tight">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2 leading-tight">
                   I'll help you activate your certificate.
                 </h3>
-                <p className="text-white/90 text-sm md:text-base leading-relaxed mb-6">
+                <p className="text-white/90 text-xs md:text-sm leading-relaxed mb-4">
                   Your enrollment is confirmed — a welcome email with your
                   certificate is on its way. Got questions? I'm right here.
                 </p>
@@ -219,13 +219,13 @@ export default function ChattiPanel() {
                   href={CERTIFICATE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#E9C52D] text-black font-bold text-sm md:text-base px-5 py-3 rounded-lg hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-lg self-start"
+                  className="inline-flex items-center justify-center gap-2 bg-[#E9C52D] text-black font-bold text-xs md:text-sm px-4 py-2.5 rounded-lg hover:bg-white hover:scale-[1.02] transition-all duration-300 shadow-lg self-start"
                 >
-                  <Download className="w-5 h-5" />
+                  <Download className="w-4 h-4" />
                   Download Certificate (PDF)
                 </a>
 
-                <div className="mt-auto pt-6 md:pt-8 text-white/60 text-[10px] uppercase tracking-widest">
+                <div className="mt-auto pt-4 md:pt-5 text-white/60 text-[10px] uppercase tracking-widest">
                   Powered by Chatti
                 </div>
               </div>
@@ -245,7 +245,7 @@ export default function ChattiPanel() {
 
                 <div
                   ref={scrollRef}
-                  className="flex-1 px-4 md:px-5 lg:px-6 py-5 md:py-6 space-y-4 min-h-[320px] max-h-[520px] overflow-y-auto"
+                  className="flex-1 px-4 md:px-5 lg:px-6 py-4 md:py-5 space-y-3 min-h-[220px] max-h-[380px] overflow-y-auto"
                 >
                   {showGreetings && (
                     <>
