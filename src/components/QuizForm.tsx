@@ -168,19 +168,19 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
     <div className="h-full flex flex-col">
       <form onSubmit={handleSubmit} className="flex-1 flex flex-col">
         {currentStep === 0 && (
-          <div className="space-y-4 flex-1 flex flex-col justify-center">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
+          <div className="space-y-3 sm:space-y-4 flex-1 flex flex-col justify-center">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">
               Please enter your contact information.
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <input
                 type="text"
                 required
                 value={formData.first_name}
                 onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
                 placeholder="First Name *"
-                className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
               <input
                 type="text"
@@ -188,18 +188,18 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 value={formData.last_name}
                 onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
                 placeholder="Last Name *"
-                className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="Email Address *"
-                className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
+                className="col-span-2 sm:col-span-1 w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
               <input
                 type="tel"
@@ -208,7 +208,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 onChange={(e) => handlePhoneChange(e.target.value)}
                 placeholder="Mobile Phone *"
                 maxLength={14}
-                className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
               <input
                 type="text"
@@ -217,20 +217,20 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 onChange={(e) => setFormData({ ...formData, zip_code: e.target.value.replace(/\D/g, '').slice(0, 5) })}
                 maxLength={5}
                 placeholder="Zip Code *"
-                className="w-full px-4 py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-300 bg-white rounded-lg focus:border-blue-400 focus:outline-none"
               />
             </div>
 
-            <div className="bg-white p-4 rounded-lg border-2 border-blue-400">
-              <label className="flex items-start gap-3 cursor-pointer">
+            <div className="bg-white p-3 sm:p-4 rounded-lg border-2 border-blue-400">
+              <label className="flex items-start gap-2.5 sm:gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   required
                   checked={formData.tcpa_consent}
                   onChange={(e) => setFormData({ ...formData, tcpa_consent: e.target.checked })}
-                  className="mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
+                  className="mt-0.5 sm:mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
                 />
-                <span className="text-xs text-gray-700">
+                <span className="text-[11px] leading-snug sm:text-xs sm:leading-normal text-gray-700">
                   By clicking here you agree to receive promotional emails, SMS texts and calls, including pre-recorded
                   messages and/or calls or texts made from an Auto-dial telephone dialing system from The Fulfillment Center,
                   and its affiliates, parents and subsidiaries (text/data and other charges may apply) at the address/numbers
@@ -243,7 +243,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               type="button"
               onClick={handleNext}
               disabled={!formData.first_name || !formData.last_name || !formData.email || !validateEmail(formData.email) || !formData.mobile_phone || !formData.zip_code || !formData.tcpa_consent}
-              className="w-full bg-[#E9C52D] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
+              className="w-full bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
             >
               CONTINUE →
             </button>
@@ -251,21 +251,28 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
         )}
 
         {currentStep === 1 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Who normally vacations with you?</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">Who normally vacations with you?</h3>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               {(['My spouse or partner', 'My spouse and/or my children', 'I vacation with my friends', 'I travel alone'] as VacationWith[]).map((option) => (
-                <label key={option} className="flex items-center gap-3 p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition-colors">
+                <label
+                  key={option}
+                  className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                    formData.vacation_with === option
+                      ? 'border-blue-600 bg-blue-50'
+                      : 'border-gray-300 hover:border-blue-600 hover:bg-blue-50'
+                  }`}
+                >
                   <input
                     type="radio"
                     name="vacation_with"
                     value={option}
                     checked={formData.vacation_with === option}
                     onChange={(e) => setFormData({ ...formData, vacation_with: e.target.value as VacationWith })}
-                    className="w-5 h-5 text-blue-600"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0"
                   />
-                  <span className="text-gray-700 font-medium">{option}</span>
+                  <span className="text-gray-700 font-medium text-xs leading-snug sm:text-sm md:text-base">{option}</span>
                 </label>
               ))}
             </div>
@@ -274,7 +281,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex-1 bg-gray-300 text-gray-700 font-bold py-4 px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+                className="flex-1 bg-gray-300 text-gray-700 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
               >
                 ← BACK
               </button>
@@ -282,7 +289,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 type="button"
                 onClick={handleNext}
                 disabled={!formData.vacation_with}
-                className="flex-1 bg-[#E9C52D] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
+                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
               >
                 CONTINUE →
               </button>
@@ -291,28 +298,25 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
         )}
 
         {currentStep === 2 && needsSpouseInfo() && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">What's your spouse's name?</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">What's your spouse's name?</h3>
 
-            <div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <input
                 type="text"
                 required
                 value={formData.spouse_first_name}
                 onChange={(e) => setFormData({ ...formData, spouse_first_name: e.target.value })}
                 placeholder="Spouse First Name *"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none"
               />
-            </div>
-
-            <div>
               <input
                 type="text"
                 required
                 value={formData.spouse_last_name}
                 onChange={(e) => setFormData({ ...formData, spouse_last_name: e.target.value })}
                 placeholder="Spouse Last Name *"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border-2 border-gray-300 rounded-lg focus:border-blue-400 focus:outline-none"
               />
             </div>
 
@@ -320,7 +324,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex-1 bg-gray-300 text-gray-700 font-bold py-4 px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+                className="flex-1 bg-gray-300 text-gray-700 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
               >
                 ← BACK
               </button>
@@ -328,7 +332,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 type="button"
                 onClick={handleNext}
                 disabled={!formData.spouse_first_name || !formData.spouse_last_name}
-                className="flex-1 bg-[#E9C52D] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
+                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
               >
                 CONTINUE →
               </button>
@@ -337,21 +341,28 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
         )}
 
         {currentStep === 3 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Are you currently:</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">Are you currently:</h3>
 
-            <div className="space-y-3">
-              {(['Gainfully Employed', 'Happily Retired', 'Not Currently Working'] as EmploymentStatus[]).map((option) => (
-                <label key={option} className="flex items-center gap-3 p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition-colors">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              {(['Gainfully Employed', 'Happily Retired', 'Not Currently Working'] as EmploymentStatus[]).map((option, idx) => (
+                <label
+                  key={option}
+                  className={`${idx === 2 ? 'col-span-2' : ''} flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                    formData.employment_status === option
+                      ? 'border-blue-600 bg-blue-50'
+                      : 'border-gray-300 hover:border-blue-600 hover:bg-blue-50'
+                  }`}
+                >
                   <input
                     type="radio"
                     name="employment_status"
                     value={option}
                     checked={formData.employment_status === option}
                     onChange={(e) => setFormData({ ...formData, employment_status: e.target.value as EmploymentStatus })}
-                    className="w-5 h-5 text-blue-600"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0"
                   />
-                  <span className="text-gray-700 font-medium">{option}</span>
+                  <span className="text-gray-700 font-medium text-xs leading-snug sm:text-sm md:text-base">{option}</span>
                 </label>
               ))}
             </div>
@@ -360,7 +371,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex-1 bg-gray-300 text-gray-700 font-bold py-4 px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+                className="flex-1 bg-gray-300 text-gray-700 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
               >
                 ← BACK
               </button>
@@ -368,7 +379,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 type="button"
                 onClick={handleNext}
                 disabled={!formData.employment_status}
-                className="flex-1 bg-[#E9C52D] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
+                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
               >
                 CONTINUE →
               </button>
@@ -377,21 +388,28 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
         )}
 
         {currentStep === 4 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">How do you normally book your travel online?</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">How do you normally book your travel online?</h3>
 
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {(['With a major Credit Card (AmEx, Visa, MC, Discover)', 'With cash or debit cards'] as TravelBookingMethod[]).map((option) => (
-                <label key={option} className="flex items-center gap-3 p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition-colors">
+                <label
+                  key={option}
+                  className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                    formData.travel_booking_method === option
+                      ? 'border-blue-600 bg-blue-50'
+                      : 'border-gray-300 hover:border-blue-600 hover:bg-blue-50'
+                  }`}
+                >
                   <input
                     type="radio"
                     name="travel_booking_method"
                     value={option}
                     checked={formData.travel_booking_method === option}
                     onChange={(e) => setFormData({ ...formData, travel_booking_method: e.target.value as TravelBookingMethod })}
-                    className="w-5 h-5 text-blue-600"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0"
                   />
-                  <span className="text-gray-700 font-medium">{option}</span>
+                  <span className="text-gray-700 font-medium text-sm leading-snug sm:text-base">{option}</span>
                 </label>
               ))}
             </div>
@@ -400,7 +418,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex-1 bg-gray-300 text-gray-700 font-bold py-4 px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+                className="flex-1 bg-gray-300 text-gray-700 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
               >
                 ← BACK
               </button>
@@ -408,7 +426,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 type="button"
                 onClick={handleNext}
                 disabled={!formData.travel_booking_method}
-                className="flex-1 bg-[#E9C52D] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
+                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
               >
                 CONTINUE →
               </button>
@@ -417,14 +435,14 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
         )}
 
         {currentStep === 5 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">What type of resort experience do you prefer?</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4">What type of resort experience do you prefer?</h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               {(['Adults-Only Luxury', 'Family-Friendly All-Inclusive', 'Adventure & Eco Resorts', 'Mega-Resorts with Entertainment', 'Boutique & Intimate Properties', 'Open to any 4-5 star resort'] as ResortPreference[]).map((option) => (
                 <label
                   key={option}
-                  className={`flex items-center gap-3 p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                  className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                     formData.resort_preference === option
                       ? 'border-blue-600 bg-blue-50'
                       : 'border-gray-300 hover:border-blue-600 hover:bg-blue-50'
@@ -436,9 +454,9 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                     value={option}
                     checked={formData.resort_preference === option}
                     onChange={(e) => setFormData({ ...formData, resort_preference: e.target.value as ResortPreference })}
-                    className="w-5 h-5 text-blue-600 flex-shrink-0"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0"
                   />
-                  <span className="text-gray-700 font-medium text-sm md:text-base">{option}</span>
+                  <span className="text-gray-700 font-medium text-xs leading-snug sm:text-sm md:text-base">{option}</span>
                 </label>
               ))}
             </div>
@@ -447,7 +465,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex-1 bg-gray-300 text-gray-700 font-bold py-4 px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+                className="flex-1 bg-gray-300 text-gray-700 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
               >
                 ← BACK
               </button>
@@ -455,7 +473,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
                 type="button"
                 onClick={handleNext}
                 disabled={!formData.resort_preference}
-                className="flex-1 bg-[#E9C52D] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
+                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
               >
                 CONTINUE →
               </button>
@@ -464,51 +482,51 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
         )}
 
         {currentStep === 6 && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Reserve your secret shopper consultation</h3>
-            <p className="text-sm text-gray-600 mb-4">All checkboxes are required to continue</p>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-4">Reserve your secret shopper consultation</h3>
+            <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4">All checkboxes are required to continue</p>
 
-            <div className="space-y-4">
-              <label className="flex items-start gap-3 p-4 border-2 border-blue-400 rounded-lg cursor-pointer">
+            <div className="space-y-2 sm:space-y-4">
+              <label className="flex items-start gap-2.5 sm:gap-3 p-3 sm:p-4 border-2 border-blue-400 rounded-lg cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.consent_terms_1}
                   onChange={(e) => setFormData({ ...formData, consent_terms_1: e.target.checked })}
-                  className="mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
+                  className="mt-0.5 sm:mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
                 />
-                <span className="text-sm text-gray-700">
+                <span className="text-[11px] leading-snug sm:text-sm sm:leading-normal text-gray-700">
                   I understand I will be matched with a 4- or 5-star all-inclusive resort in Mexico or the Caribbean based on my preferences and availability.
                 </span>
               </label>
 
-              <label className="flex items-start gap-3 p-4 border-2 border-blue-400 rounded-lg cursor-pointer">
+              <label className="flex items-start gap-2.5 sm:gap-3 p-3 sm:p-4 border-2 border-blue-400 rounded-lg cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.consent_terms_2}
                   onChange={(e) => setFormData({ ...formData, consent_terms_2: e.target.checked })}
-                  className="mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
+                  className="mt-0.5 sm:mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
                 />
-                <span className="text-sm text-gray-700">
+                <span className="text-[11px] leading-snug sm:text-sm sm:leading-normal text-gray-700">
                   I understand I will provide the dates I can travel (within the next 12 months), and I will be matched with dates available at our partner resorts.
                 </span>
               </label>
 
-              <label className="flex items-start gap-3 p-4 border-2 border-blue-400 rounded-lg cursor-pointer">
+              <label className="flex items-start gap-2.5 sm:gap-3 p-3 sm:p-4 border-2 border-blue-400 rounded-lg cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.consent_terms_3}
                   onChange={(e) => setFormData({ ...formData, consent_terms_3: e.target.checked })}
-                  className="mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
+                  className="mt-0.5 sm:mt-1 w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 flex-shrink-0"
                 />
-                <span className="text-sm text-gray-700">
+                <span className="text-[11px] leading-snug sm:text-sm sm:leading-normal text-gray-700">
                   I understand I will receive complimentary resort accommodations (4 days/3 nights), including meals, drinks, and often resort amenities. I am responsible for my airfare and transportation from the airport to the resort.
                 </span>
               </label>
             </div>
 
             {error && (
-              <div className="bg-red-50 border-2 border-red-500 p-4 rounded-lg">
-                <p className="text-red-700 font-semibold">{error}</p>
+              <div className="bg-red-50 border-2 border-red-500 p-3 sm:p-4 rounded-lg">
+                <p className="text-red-700 font-semibold text-sm sm:text-base">{error}</p>
               </div>
             )}
 
@@ -516,7 +534,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex-1 bg-gray-300 text-gray-700 font-bold py-4 px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
+                className="flex-1 bg-gray-300 text-gray-700 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
                 disabled={isSubmitting}
               >
                 ← BACK
@@ -524,7 +542,7 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               <button
                 type="submit"
                 disabled={!formData.consent_terms_1 || !formData.consent_terms_2 || !formData.consent_terms_3 || isSubmitting}
-                className="flex-1 bg-[#E9C52D] text-black font-bold py-4 px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg flex items-center justify-center gap-2"
+                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>
