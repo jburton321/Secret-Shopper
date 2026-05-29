@@ -555,8 +555,8 @@ function App() {
       {/* Caribbean Resorts Carousel Section */}
       <section className="py-12 md:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-2">8 PARTNER BRANDS</h2>
-          <p className="text-center text-gray-600 text-xs sm:text-sm tracking-widest mb-6 md:mb-8">ON THE BEST BEACHES</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-2">50+ RESORT PROPERTIES</h2>
+          <p className="text-center text-gray-600 text-xs sm:text-sm tracking-widest mb-6 md:mb-8">ACROSS 8 PARTNER BRANDS · ON THE BEST BEACHES</p>
 
           <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
             {Object.entries(groupedResorts).map(([destination, destinationResorts]) => {
