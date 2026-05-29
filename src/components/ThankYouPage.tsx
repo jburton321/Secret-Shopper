@@ -1,29 +1,48 @@
-import { Check, Download, MessageCircle, PartyPopper } from 'lucide-react';
+import {
+  Check,
+  Download,
+  PartyPopper,
+  Hotel,
+  UtensilsCrossed,
+  Gift,
+  Calendar,
+  FileCheck,
+  Sparkles,
+  KeyRound,
+  MessageCircle,
+  Phone,
+} from 'lucide-react';
 
 const WELCOME_KIT_HREF = '/downloads/welcome-kit.pdf';
 const WELCOME_KIT_FILENAME = 'Secret-Shopper-Welcome-Kit.pdf';
+const HERO_VIDEO = 'https://jonburtondesign.com/SecretShopper/media/HERO.mp4';
+const RESORT_IMG = 'https://jonburtondesign.com/SecretShopper/images/images/resort.jpg';
 
 const PERKS = [
-  '4 Days, 3 Nights all-inclusive resort stay — accommodations, meals & drinks',
-  'Cocktails and full resort access',
-  '$50 Hotel Gift Card upon enrollment (instant)',
-  'Choose your travel dates within 12 months',
-  'A simple 15-minute feedback survey after your trip',
+  { icon: Hotel, text: '4 Days, 3 Nights All-Inclusive Resort Stay' },
+  { icon: UtensilsCrossed, text: 'Accommodations + Meals + Drinks' },
+  { icon: Sparkles, text: 'Cocktails & Full Resort Access' },
+  { icon: Gift, text: '$50 Hotel Gift Card Upon Enrollment (Instant)' },
+  { icon: Calendar, text: 'Choose Your Travel Dates Within 12 Months' },
+  { icon: FileCheck, text: 'Simple 15-Minute Feedback Survey After Your Trip' },
 ];
 
-const NEXT_STEPS = [
+const STEPS = [
   {
     num: 1,
+    icon: KeyRound,
     title: 'Get Matched',
     body: "We'll pair you with a 4–5 star all-inclusive resort that fits your style and schedule.",
   },
   {
     num: 2,
+    icon: Hotel,
     title: 'Experience Luxury',
     body: 'Enjoy 4 days and 3 nights with meals, drinks, and often amenities included. Travel as a normal guest.',
   },
   {
     num: 3,
+    icon: FileCheck,
     title: 'Share Feedback',
     body: 'Complete a simple 15-minute survey about your experience and receive your $50 gift card.',
   },
@@ -31,84 +50,206 @@ const NEXT_STEPS = [
 
 export default function ThankYouPage() {
   return (
-    <main className="container mx-auto px-4 py-10 md:py-14 lg:py-16 max-w-4xl">
-      <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center mb-6 md:mb-8">
-        <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Check className="w-12 h-12 text-green-600" strokeWidth={3} />
+    <>
+      {/* Hero confirmation — matches homepage hero pattern (video bg + dark overlay + yellow CTA) */}
+      <section className="relative py-14 md:py-20 lg:py-28 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-blue-900 to-teal-900">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover opacity-100"
+          >
+            <source src={HERO_VIDEO} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/55"></div>
         </div>
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <PartyPopper className="w-7 h-7 md:w-8 md:h-8 text-blue-600" />
-          <h1 className="text-3xl md:text-5xl font-bold text-primary-blue-950">Thank You!</h1>
-        </div>
-        <h2 className="text-lg md:text-2xl font-semibold text-gray-800 mb-5">
-          Submission Complete — You're All Set!
-        </h2>
-        <p className="text-gray-700 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-          A representative will call or text you within 1–2 business days to finalize your
-          Secret Shopper consultation and discuss your resort match. Look out for our call!
-        </p>
-      </div>
 
-      <div className="bg-gradient-to-br from-blue-600 to-teal-600 rounded-2xl shadow-xl p-6 md:p-10 mb-6 md:mb-8 text-center text-white">
-        <h3 className="text-xl md:text-2xl font-bold mb-2">Download Your Welcome Kit</h3>
-        <p className="text-blue-50 text-sm md:text-base mb-5 max-w-xl mx-auto">
-          Your Secret Shopper welcome guide, $50 gift card details, and what to expect — all in one PDF.
-        </p>
-        <a
-          href={WELCOME_KIT_HREF}
-          download={WELCOME_KIT_FILENAME}
-          className="inline-flex items-center gap-2 bg-[#E9C52D] text-black font-bold text-sm md:text-base px-6 md:px-8 py-3 md:py-4 rounded-lg shadow-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300"
-        >
-          <Download className="w-5 h-5" />
-          DOWNLOAD WELCOME KIT (PDF)
-        </a>
-      </div>
-
-      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 mb-6 md:mb-8">
-        <h3 className="text-xl md:text-3xl font-bold text-primary-blue-950 mb-5 md:mb-6 text-center">
-          As a Secret Shopper, You Receive:
-        </h3>
-        <ul className="space-y-3 max-w-2xl mx-auto">
-          {PERKS.map((item) => (
-            <li key={item} className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check className="w-4 h-4 text-white" strokeWidth={3} />
-              </div>
-              <span className="text-gray-700 text-sm md:text-base lg:text-lg">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 mb-6 md:mb-8">
-        <h3 className="text-xl md:text-3xl font-bold text-primary-blue-950 mb-6 md:mb-8 text-center">
-          What Happens Next
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {NEXT_STEPS.map((step) => (
-            <div key={step.num} className="text-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-blue-600 to-teal-500 text-white font-bold text-2xl md:text-3xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                {step.num}
-              </div>
-              <h4 className="font-bold text-lg md:text-xl text-primary-blue-950 mb-2">{step.title}</h4>
-              <p className="text-gray-700 text-sm md:text-base leading-relaxed">{step.body}</p>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-green-500 ring-4 ring-white/30 shadow-2xl mx-auto mb-6">
+              <Check className="w-12 h-12 md:w-14 md:h-14 text-white" strokeWidth={3} />
             </div>
-          ))}
-        </div>
-      </div>
 
-      <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 text-center">
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <MessageCircle className="w-6 h-6 text-blue-600" />
-          <h3 className="text-xl md:text-2xl font-bold text-primary-blue-950">
-            Have a question while you wait?
-          </h3>
+            <div className="flex items-center justify-center gap-3 mb-3 md:mb-4">
+              <PartyPopper className="w-7 h-7 md:w-9 md:h-9 text-yellow-400 drop-shadow-lg" />
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+                Thank You!
+              </h1>
+              <PartyPopper className="w-7 h-7 md:w-9 md:h-9 text-yellow-400 drop-shadow-lg" />
+            </div>
+
+            <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold text-white mb-5 md:mb-6 drop-shadow-lg">
+              Submission Complete — You're All Set!
+            </h2>
+
+            <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto drop-shadow-md">
+              A representative will call or text you within 1–2 business days to finalize your
+              Secret Shopper consultation and discuss your resort match. Look out for our call!
+            </p>
+
+            <a
+              href={WELCOME_KIT_HREF}
+              download={WELCOME_KIT_FILENAME}
+              className="inline-flex items-center gap-2 bg-[#E9C52D] text-black font-bold py-4 px-8 md:px-10 rounded-lg text-base md:text-lg hover:bg-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg"
+            >
+              <Download className="w-5 h-5 md:w-6 md:h-6" />
+              DOWNLOAD WELCOME KIT (PDF)
+            </a>
+            <p className="text-white/70 text-xs md:text-sm mt-4">
+              PDF · Your $50 gift card details & what to expect
+            </p>
+          </div>
         </div>
-        <p className="text-gray-700 mb-6">Chat with us below.</p>
-        <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl px-6 py-12 text-gray-500 text-sm">
-          [ Chat Widget Embed Area ]
+      </section>
+
+      {/* "AS A SECRET SHOPPER, YOU RECEIVE:" — reuses the homepage's two-column pattern */}
+      <section className="py-12 md:py-16 lg:py-20 bg-[#F9FBFC] border-b-4 border-teal-600">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-blue-950">
+                AS A SECRET SHOPPER, YOU RECEIVE:
+              </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-stretch">
+              {/* Left: Resort hero image */}
+              <div className="relative rounded-xl md:rounded-2xl shadow-2xl overflow-hidden min-h-[260px] md:min-h-[320px]">
+                <img src={RESORT_IMG} alt="Luxury Resort" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
+                <div className="absolute bottom-4 left-0 right-0 z-10 text-center px-4">
+                  <h3 className="text-white text-base md:text-lg font-bold drop-shadow-lg">
+                    Your Resort Awaits
+                  </h3>
+                  <p className="text-white/90 text-xs md:text-sm drop-shadow-lg tracking-wider">
+                    MEXICO & THE CARIBBEAN
+                  </p>
+                </div>
+                <div className="absolute inset-0 border-4 border-white/10 rounded-xl md:rounded-2xl pointer-events-none"></div>
+              </div>
+
+              {/* Right: Benefits gradient card */}
+              <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl flex">
+                <div className="relative rounded-xl md:rounded-2xl flex-1">
+                  <div className="bg-gradient-to-br from-teal-50 via-white to-blue-50 p-4 md:p-6 lg:p-8 h-full flex items-center">
+                    <div className="space-y-2 md:space-y-3 w-full">
+                      {PERKS.map((perk) => {
+                        const Icon = perk.icon;
+                        return (
+                          <div
+                            key={perk.text}
+                            className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-lg md:rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg hover:scale-[1.02] cursor-default group"
+                          >
+                            <Icon className="w-5 h-5 md:w-6 md:h-6 text-teal-600 flex-shrink-0 group-hover:text-teal-700 group-hover:scale-110 transition-all duration-300" />
+                            <span className="text-sm md:text-base text-primary-blue-950 font-semibold group-hover:text-teal-700 transition-colors duration-300">
+                              {perk.text}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </main>
+      </section>
+
+      {/* "What Happens Next" — matches homepage steps section pattern */}
+      <section className="relative py-12 md:py-16 lg:py-20 xl:py-24 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-blue-900 to-teal-900">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover opacity-100"
+          >
+            <source src={HERO_VIDEO} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/55"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 drop-shadow-lg">
+              What Happens Next
+            </h2>
+            <p className="text-white/80 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
+              Three simple steps from here to your complimentary all-inclusive vacation.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {STEPS.map((step) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.num}
+                  className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
+                >
+                  <div className="mb-6">
+                    <div className="relative inline-block">
+                      <div className="w-20 h-20 bg-teal-600 rounded-xl flex items-center justify-center mb-4">
+                        <Icon className="w-10 h-10 text-white" strokeWidth={2.5} />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-white font-bold text-base flex items-center justify-center shadow-lg ring-2 ring-white">
+                        {step.num}
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-bold text-primary-blue-950 mb-3">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">{step.body}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Chat widget section */}
+      <section className="py-12 md:py-16 lg:py-20 bg-tan-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-6 md:mb-8">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-blue-600" />
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-blue-950">
+                  Have a Question While You Wait?
+                </h2>
+              </div>
+              <p className="text-gray-700 text-base md:text-lg">
+                Chat with us below — our team is here to help.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-xl p-4 md:p-6 lg:p-8">
+              <div className="bg-gradient-to-br from-blue-50 via-white to-teal-50 border-2 border-dashed border-gray-300 rounded-xl px-6 py-16 md:py-20 text-center">
+                <MessageCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <p className="text-gray-500 text-sm md:text-base font-medium tracking-wider">
+                  [ CHAT WIDGET EMBED AREA ]
+                </p>
+              </div>
+            </div>
+
+            <p className="text-center text-gray-700 text-sm md:text-base mt-6">
+              Or call us directly:{' '}
+              <a
+                href="tel:7027032479"
+                className="font-bold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1"
+              >
+                <Phone className="w-4 h-4" />
+                (702) 703-2479
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
