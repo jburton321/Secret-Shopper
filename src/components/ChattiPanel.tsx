@@ -1,5 +1,7 @@
 import { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import { Sparkles, Download, Send } from 'lucide-react';
+import { Download, Send } from 'lucide-react';
+
+const CHATTI_AVATAR_SRC = '/chatti-icon.png';
 
 /**
  * Chatti integration — branded card that streams the live Chatti API
@@ -225,8 +227,14 @@ export default function ChattiPanel() {
               {/* Left: Branded intro panel */}
               <div className="lg:col-span-2 bg-gradient-to-br from-blue-800 via-blue-700 to-teal-700 text-white p-5 md:p-6 lg:p-7 flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/15 ring-2 ring-white/40 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-300" />
+                  <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white ring-2 ring-white/40 flex items-center justify-center flex-shrink-0 overflow-hidden shadow-md">
+                    <img
+                      src={CHATTI_AVATAR_SRC}
+                      alt="Chatti — Secret Shopper Assistant"
+                      className="w-full h-full object-cover"
+                      loading="eager"
+                      decoding="async"
+                    />
                   </div>
                   <div className="min-w-0">
                     <div className="font-bold text-base md:text-lg leading-tight">Chatti</div>
@@ -367,8 +375,15 @@ function ChattiBubble({ from, children }: { from: MessageRole; children: ReactNo
   }
   return (
     <div className="flex gap-2.5">
-      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-700 to-teal-700 flex items-center justify-center flex-shrink-0">
-        <Sparkles className="w-4 h-4 text-yellow-300" />
+      <div className="w-8 h-8 rounded-full bg-white ring-1 ring-blue-100 flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
+        <img
+          src={CHATTI_AVATAR_SRC}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div className="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100 max-w-[88%]">
         <div className="text-sm md:text-base text-gray-800 leading-relaxed whitespace-pre-wrap">
