@@ -4,31 +4,31 @@ const TeamCollaborationSection = () => {
   const teamMembers = [
     {
       name: '4 Days, 3 Nights',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/Atlantis.png',
+      image: '/SecretShopper/images/images/Atlantis.png',
       position: { top: '8%', right: '25%' },
       delay: '0s'
     },
     {
       name: 'All-Inclusive Dining',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/DREAMS.png',
+      image: '/SecretShopper/images/images/DREAMS.png',
       position: { top: '42%', left: '12%' },
       delay: '0.8s'
     },
     {
       name: 'Cocktails',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/Secrets.png',
+      image: '/SecretShopper/images/images/Secrets.png',
       position: { top: '35%', right: '8%' },
       delay: '1.6s'
     },
     {
       name: 'Full Resort Access',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/VIDANTA.png',
+      image: '/SecretShopper/images/images/VIDANTA.png',
       position: { bottom: '18%', left: '32%' },
       delay: '2.4s'
     },
     {
       name: '$50 Gift Card',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/LIFESTYLE.png',
+      image: '/SecretShopper/images/images/LIFESTYLE.png',
       position: { bottom: '20%', right: '25%' },
       delay: '3.2s'
     }
@@ -58,7 +58,7 @@ const TeamCollaborationSection = () => {
             {/* Background map image */}
             <div className="absolute -inset-8 md:-inset-16 pointer-events-none opacity-30 md:opacity-100">
               <img
-                src="https://jonburtondesign.com/SecretShopper/images/Misc-graphics/Map-Mexico-8.png"
+                src="/SecretShopper/images/Misc-graphics/Map-Mexico-8.png"
                 alt=""
                 className="w-full h-full object-cover"
               />
@@ -102,7 +102,7 @@ const TeamCollaborationSection = () => {
                   <div className="relative z-[3]">
                     <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44 lg:w-56 lg:h-56 rounded-full border-4 border-cyan-400 overflow-hidden shadow-lg">
                       <img
-                        src="https://jonburtondesign.com/SecretShopper/images/images/resort.jpg"
+                        src="/SecretShopper/images/images/resort.jpg"
                         alt="Luxury Resort"
                         className="w-full h-full object-cover"
                       />

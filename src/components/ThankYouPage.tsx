@@ -15,8 +15,8 @@ import {
 import ChattiPanel from './ChattiPanel';
 
 const CERTIFICATE_URL = 'https://directsalesincentives.com/pdfs/MTSS.pdf';
-const HERO_VIDEO = 'https://jonburtondesign.com/SecretShopper/media/HERO.mp4';
-const RESORT_IMG = 'https://jonburtondesign.com/SecretShopper/images/images/resort.jpg';
+const HERO_VIDEO = '/SecretShopper/media/HERO.mp4';
+const RESORT_IMG = '/SecretShopper/images/images/resort.jpg';
 
 const PERKS = [
   { icon: Hotel, text: '4 Days, 3 Nights All-Inclusive Resort Stay' },

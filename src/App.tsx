@@ -39,50 +39,50 @@ function App() {
     {
       name: 'ATLANTIS PARADISE ISLAND',
       location: 'PARADISE ISLAND - BAHAMAS',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/Atlantis.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Atlantis.png'
+      image: '/SecretShopper/images/images/Atlantis.png',
+      logo: '/SecretShopper/images/ResortsLogo/Atlantis.png'
     },
     {
       name: 'SANDALS RESORTS',
       location: 'MONTEGO BAY - JAMAICA',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/Sandles.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Sandles.png'
+      image: '/SecretShopper/images/images/Sandles.png',
+      logo: '/SecretShopper/images/ResortsLogo/Sandles.png'
     },
     {
       name: 'SECRETS RESORTS & SPAS',
       location: 'RIVIERA MAYA - MEXICO',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/Secrets.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Serets.png'
+      image: '/SecretShopper/images/images/Secrets.png',
+      logo: '/SecretShopper/images/ResortsLogo/Serets.png'
     },
     {
       name: 'HOTEL XCARET MÉXICO',
       location: 'PLAYA DEL CARMEN - MEXICO',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/xcaret-mexico.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Mexico.png'
+      image: '/SecretShopper/images/images/xcaret-mexico.png',
+      logo: '/SecretShopper/images/ResortsLogo/Mexico.png'
     },
     {
       name: 'VIDANTA RESORTS',
       location: 'RIVIERA MAYA - MEXICO',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/VIDANTA.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Vidanta.png'
+      image: '/SecretShopper/images/images/VIDANTA.png',
+      logo: '/SecretShopper/images/ResortsLogo/Vidanta.png'
     },
     {
       name: 'THE FIVES HOTELS',
       location: 'PLAYA DEL CARMEN - MEXICO',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/FIVES.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/The Fives.png'
+      image: '/SecretShopper/images/images/FIVES.png',
+      logo: '/SecretShopper/images/ResortsLogo/The Fives.png'
     },
     {
       name: 'DREAMS RESORTS & SPAS',
       location: 'CANCÚN - MEXICO',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/DREAMS.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Dreams.png'
+      image: '/SecretShopper/images/images/DREAMS.png',
+      logo: '/SecretShopper/images/ResortsLogo/Dreams.png'
     },
     {
       name: 'LIFESTYLE HOLIDAYS',
       location: 'PUERTO PLATA - DOMINICAN REPUBLIC',
-      image: 'https://jonburtondesign.com/SecretShopper/images/images/LIFESTYLE.png',
-      logo: 'https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Lifestyle.png'
+      image: '/SecretShopper/images/images/LIFESTYLE.png',
+      logo: '/SecretShopper/images/ResortsLogo/Lifestyle.png'
     }
   ];
 
@@ -218,7 +218,7 @@ function App() {
             preload="auto"
             className="w-full h-full object-cover opacity-100"
           >
-            <source src="https://jonburtondesign.com/SecretShopper/media/HERO.mp4" type="video/mp4" />
+            <source src="/SecretShopper/media/HERO.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
@@ -275,22 +275,22 @@ function App() {
           <p className="text-center text-gray-600 text-xs sm:text-sm tracking-widest mb-6 md:mb-8">50+ PROPERTIES IN MEXICO & THE CARIBBEAN</p>
           <div className="relative">
             <div className="flex gap-12 animate-scroll items-center">
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
             </div>
           </div>
         </div>
@@ -402,7 +402,7 @@ function App() {
             preload="auto"
             className="w-full h-full object-cover opacity-100"
           >
-            <source src="https://jonburtondesign.com/SecretShopper/media/HERO.mp4" type="video/mp4" />
+            <source src="/SecretShopper/media/HERO.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
@@ -487,7 +487,7 @@ function App() {
             <div className="md:col-span-2 lg:col-span-2 rounded-2xl p-6 md:p-8 lg:p-10 shadow-lg relative overflow-hidden">
               <div className="absolute inset-0">
                 <img
-                  src="https://jonburtondesign.com/SecretShopper/images/images/resort.jpg"
+                  src="/SecretShopper/images/images/resort.jpg"
                   alt="Resort"
                   className="w-full h-full object-cover"
                 />
@@ -523,27 +523,27 @@ function App() {
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals Resorts" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Caribbean Luxury</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams Resorts" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Mexico & Caribbean</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis Paradise" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis Paradise" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Bahamas</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives Hotels" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives Hotels" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Riviera Maya</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle Resorts" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Caribbean Excellence</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="https://jonburtondesign.com/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets Resorts" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Premium All-Inclusive</p>
                 </div>
               </div>
@@ -560,7 +560,7 @@ function App() {
                   preload="auto"
                   className="w-full h-full object-cover"
                 >
-                  <source src="https://jonburtondesign.com/SecretShopper/media/couple.mp4" type="video/mp4" />
+                  <source src="/SecretShopper/media/couple.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-blue-900/80 to-primary-blue-600/80"></div>
               </div>
@@ -711,7 +711,7 @@ function App() {
               <div className="group">
                 <div className="relative overflow-hidden bg-gradient-to-br from-teal-600 to-blue-600 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500">
-                    <img src="https://jonburtondesign.com/SecretShopper/images/images/resort.jpg" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/resort.jpg" alt="" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-10">
                     <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -727,7 +727,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="https://jonburtondesign.com/SecretShopper/images/images/Atlantis.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/Atlantis.png" alt="" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -743,7 +743,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="https://jonburtondesign.com/SecretShopper/images/images/Secrets.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/Secrets.png" alt="" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -759,7 +759,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="https://jonburtondesign.com/SecretShopper/images/images/DREAMS.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/DREAMS.png" alt="" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -775,7 +775,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="https://jonburtondesign.com/SecretShopper/images/images/xcaret-mexico.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/xcaret-mexico.png" alt="" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -791,7 +791,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="https://jonburtondesign.com/SecretShopper/images/images/VIDANTA.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/VIDANTA.png" alt="" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -811,7 +811,7 @@ function App() {
       <section className="py-12 md:py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://jonburtondesign.com/SecretShopper/images/images/Sandles.png"
+            src="/SecretShopper/images/images/Sandles.png"
             alt="Sandals Resort Background"
             className="w-full h-full object-cover"
           />
@@ -913,7 +913,7 @@ function App() {
             preload="auto"
             className="w-full h-full object-cover opacity-100"
           >
-            <source src="https://jonburtondesign.com/SecretShopper/media/FinalCTA.mp4" type="video/mp4" />
+            <source src="/SecretShopper/media/FinalCTA.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
@@ -944,7 +944,7 @@ function App() {
 
         <div className="w-full relative -mb-1 z-10">
           <img
-            src="https://jonburtondesign.com/SecretShopper/images/Misc-graphics/Vector-Object.png"
+            src="/SecretShopper/images/Misc-graphics/Vector-Object.png"
             alt=""
             className="w-full h-auto block"
           />
