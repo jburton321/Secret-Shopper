@@ -12,6 +12,7 @@ import {
   Mail,
   Phone,
 } from 'lucide-react';
+import ChattiPanel from './ChattiPanel';
 
 const CERTIFICATE_URL = 'https://directsalesincentives.com/pdfs/MTSS.pdf';
 const HERO_VIDEO = 'https://jonburtondesign.com/SecretShopper/media/HERO.mp4';
@@ -51,7 +52,7 @@ export default function ThankYouPage() {
   return (
     <>
       {/* Hero confirmation — matches homepage hero pattern (video bg + dark overlay + yellow CTA) */}
-      <section className="relative py-14 md:py-20 lg:py-28 overflow-hidden">
+      <section className="relative pt-14 md:pt-20 lg:pt-28 pb-32 md:pb-40 lg:pb-48 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-blue-900 to-teal-900">
           <video
             autoPlay
@@ -86,7 +87,7 @@ export default function ThankYouPage() {
 
             <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto drop-shadow-md">
               Check your inbox in the next few minutes for your Secret Shopper certificate and
-              next steps. Chatti (our assistant) is opening on the right to help you activate
+              next steps. Chatti (our assistant) is waiting just below to help you activate
               your certificate and answer any questions — a representative will also call or
               text within 1–2 business days.
             </p>
@@ -108,8 +109,11 @@ export default function ThankYouPage() {
         </div>
       </section>
 
+      {/* Chatti — 3D bridging card sitting on top of the hero and the perks section */}
+      <ChattiPanel />
+
       {/* "AS A SECRET SHOPPER, YOU RECEIVE:" — reuses the homepage's two-column pattern */}
-      <section className="py-12 md:py-16 lg:py-20 bg-[#F9FBFC] border-b-4 border-teal-600">
+      <section className="pt-32 md:pt-40 lg:pt-48 -mt-20 md:-mt-28 lg:-mt-36 pb-12 md:pb-16 lg:pb-20 bg-[#F9FBFC] border-b-4 border-teal-600">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="mb-6 md:mb-8">
@@ -237,12 +241,9 @@ export default function ThankYouPage() {
                 <h3 className="text-lg md:text-xl font-bold text-primary-blue-950 mb-2">
                   Chat with Chatti
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-3">
-                  Already open on the right — our assistant has your certificate and answers
-                  ready.
-                </p>
-                <p className="text-xs text-gray-500 italic">
-                  Minimized? Use the floating chat button.
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  Scroll up to the chat above — our assistant has your certificate and
+                  activation steps ready.
                 </p>
               </div>
 

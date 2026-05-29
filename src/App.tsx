@@ -3,7 +3,6 @@ import { Phone, Check, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Star, 
 import QuizForm from './components/QuizForm';
 import TeamCollaborationSection from './components/TeamCollaborationSection';
 import ThankYouPage from './components/ThankYouPage';
-import ChattiPanel from './components/ChattiPanel';
 
 function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -13,7 +12,6 @@ function App() {
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [chattiOpen, setChattiOpen] = useState(false);
 
   useEffect(() => {
     if (submitted) {
@@ -189,11 +187,7 @@ function App() {
   ];
 
   return (
-    <div
-      className={`min-h-screen bg-tan-50 transition-[padding] duration-300 ${
-        submitted && chattiOpen ? 'lg:pr-[400px]' : ''
-      }`}
-    >
+    <div className="min-h-screen bg-tan-50">
       <header className="bg-primary-blue-950 text-tan-50 py-3 md:py-4 sticky top-0 z-40 shadow-lg">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center">
@@ -1293,8 +1287,6 @@ function App() {
           </div>
         </div>
       )}
-
-      <ChattiPanel active={submitted} isOpen={chattiOpen} onOpenChange={setChattiOpen} />
 
       {!submitted && (
         <div className="fixed bottom-0 left-0 right-0 bg-primary-blue-950 text-tan-50 py-2.5 sm:py-3 md:py-4 shadow-2xl z-50 border-t-4 border-teal-700">
