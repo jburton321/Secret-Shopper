@@ -16,8 +16,6 @@ import {
 } from 'lucide-react';
 
 const CERTIFICATE_URL = 'https://directsalesincentives.com/pdfs/MTSS.pdf';
-const CHATTI_WIDGET_SRC =
-  'https://get.chattilive.ai/widgets/js/a1df788c-f06e-4d33-a26b-5248bab93bf2';
 const CELEBRATION_SOUND = '/SecretShopper/media/celebration.mp3';
 const HERO_VIDEO = '/SecretShopper/media/HERO.mp4';
 const RESORT_IMG = '/SecretShopper/images/images/resort.jpg';
@@ -55,37 +53,39 @@ const STEPS = [
 export default function ThankYouPage() {
   const heroRef = useRef<HTMLElement | null>(null);
 
-  // Chatti Live Widget — loads only on the TY page, auto-opens as a
-  // centered modal as soon as the widget's API is ready.
+  // Reveal the Chatti launcher (it was hidden globally in index.html so
+  // it doesn't show on the homepage) and immediately open the centered
+  // modal. The script was eagerly loaded in App.tsx on initial page
+  // load, so by the time the user submits the form the API is almost
+  // always ready and the modal opens instantly. A short rAF-based poll
+  // covers the rare case where the user is faster than the network.
   useEffect(() => {
-    if (!document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) {
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = CHATTI_WIDGET_SRC;
-      script.setAttribute(
-        'data-settings',
-        '{"debug":false,"openChattiLive":"modal"}',
-      );
-      document.body.appendChild(script);
-    }
+    document.getElementById('chatti-hide-launcher')?.remove();
 
-    // Poll briefly for the widget's open API and trigger the centered
-    // modal as soon as it's available.
-    let attempts = 0;
-    const opener = window.setInterval(() => {
-      attempts += 1;
-      const open = (window as unknown as { OpenChattiLive?: (mode?: string) => void })
+    type ChattiOpener = (mode?: string) => void;
+    const tryOpen = (): boolean => {
+      const open = (window as unknown as { OpenChattiLive?: ChattiOpener })
         .OpenChattiLive;
       if (typeof open === 'function') {
         open('modal');
-        window.clearInterval(opener);
-      } else if (attempts > 50) {
-        window.clearInterval(opener);
+        return true;
       }
-    }, 200);
+      return false;
+    };
+
+    if (tryOpen()) return;
+
+    let rafId = 0;
+    let attempts = 0;
+    const tick = () => {
+      attempts += 1;
+      if (tryOpen() || attempts > 600) return;
+      rafId = window.requestAnimationFrame(tick);
+    };
+    rafId = window.requestAnimationFrame(tick);
 
     return () => {
-      window.clearInterval(opener);
+      window.cancelAnimationFrame(rafId);
     };
   }, []);
 

@@ -4,6 +4,9 @@ import QuizForm from './components/QuizForm';
 import TeamCollaborationSection from './components/TeamCollaborationSection';
 import ThankYouPage from './components/ThankYouPage';
 
+const CHATTI_WIDGET_SRC =
+  'https://get.chattilive.ai/widgets/js/a1df788c-f06e-4d33-a26b-5248bab93bf2';
+
 function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
@@ -18,6 +21,22 @@ function App() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [submitted]);
+
+  // Eagerly load the Chatti widget on app mount so its API is fully
+  // initialized by the time the user finishes the quiz. The auto-rendered
+  // launcher is hidden by a CSS rule in index.html until the TY page
+  // reveals it.
+  useEffect(() => {
+    if (document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) return;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = CHATTI_WIDGET_SRC;
+    script.setAttribute(
+      'data-settings',
+      '{"debug":false,"openChattiLive":"modal"}',
+    );
+    document.body.appendChild(script);
+  }, []);
 
   const handleSubmitted = () => {
     setSubmitted(true);
