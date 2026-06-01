@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Check,
   Download,
@@ -12,9 +13,10 @@ import {
   Mail,
   Phone,
 } from 'lucide-react';
-import ChattiPanel from './ChattiPanel';
 
 const CERTIFICATE_URL = 'https://directsalesincentives.com/pdfs/MTSS.pdf';
+const CHATTI_WIDGET_SRC =
+  'https://get.chattilive.ai/widgets/js/a1df788c-f06e-4d33-a26b-5248bab93bf2';
 const HERO_VIDEO = '/SecretShopper/media/HERO.mp4';
 const RESORT_IMG = '/SecretShopper/images/images/resort.jpg';
 
@@ -49,6 +51,19 @@ const STEPS = [
 ];
 
 export default function ThankYouPage() {
+  // Chatti Live Widget — loads only on the TY page, auto-opens on load
+  useEffect(() => {
+    if (document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) return;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = CHATTI_WIDGET_SRC;
+    script.setAttribute(
+      'data-settings',
+      '{"debug":false,"openChattiLiveState":"open","openChattiLive":"sidebar"}',
+    );
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <>
       {/* Hero confirmation — matches homepage hero pattern (video bg + dark overlay + yellow CTA) */}
@@ -87,9 +102,7 @@ export default function ThankYouPage() {
 
             <p className="text-white/90 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto drop-shadow-md">
               Check your inbox in the next few minutes for your Secret Shopper certificate and
-              next steps. Chatti (our assistant) is waiting just below to help you activate
-              your certificate and answer any questions — a representative will also call or
-              text within 1–2 business days.
+              next steps. A representative will also call or text within 1–2 business days.
             </p>
 
             <a
@@ -109,11 +122,8 @@ export default function ThankYouPage() {
         </div>
       </section>
 
-      {/* Chatti — 3D bridging card sitting on top of the hero and the perks section */}
-      <ChattiPanel />
-
       {/* "AS A SECRET SHOPPER, YOU RECEIVE:" — reuses the homepage's two-column pattern */}
-      <section className="pt-32 md:pt-40 lg:pt-48 -mt-20 md:-mt-28 lg:-mt-36 pb-12 md:pb-16 lg:pb-20 bg-[#F9FBFC] border-b-4 border-teal-600">
+      <section className="py-12 md:py-16 lg:py-20 bg-[#F9FBFC] border-b-4 border-teal-600">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
             <div className="mb-6 md:mb-8">
@@ -219,34 +229,20 @@ export default function ThankYouPage() {
         </div>
       </section>
 
-      {/* Support / "Chatti is open" section */}
+      {/* Support / "Have a question?" section */}
       <section className="py-12 md:py-16 lg:py-20 bg-tan-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8 md:mb-10">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-blue-950 mb-3">
                 Have a Question Right Now?
               </h2>
               <p className="text-gray-700 text-base md:text-lg max-w-2xl mx-auto">
-                You've got three easy ways to get answers — Chatti can help you instantly.
+                Two easy ways to get answers about your certificate and trip.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-              {/* Chatti card */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 md:p-7 text-center hover:shadow-xl transition-shadow duration-300 border border-blue-100">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-700 to-teal-700 flex items-center justify-center shadow-lg">
-                  <Sparkles className="w-7 h-7 text-yellow-300" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold text-primary-blue-950 mb-2">
-                  Chat with Chatti
-                </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  Scroll up to the chat above — our assistant has your certificate and
-                  activation steps ready.
-                </p>
-              </div>
-
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6">
               {/* Email card */}
               <div className="bg-white rounded-2xl shadow-lg p-6 md:p-7 text-center hover:shadow-xl transition-shadow duration-300 border border-blue-100">
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-lg">
