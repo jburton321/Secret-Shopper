@@ -51,16 +51,13 @@ const STEPS = [
 ];
 
 export default function ThankYouPage() {
-  // Chatti Live Widget — loads only on the TY page, auto-opens on load
+  // Chatti Live Widget — loads only on the TY page
   useEffect(() => {
     if (document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) return;
     const script = document.createElement('script');
     script.async = true;
     script.src = CHATTI_WIDGET_SRC;
-    script.setAttribute(
-      'data-settings',
-      '{"debug":false,"openChattiLiveState":"open","openChattiLive":"sidebar"}',
-    );
+    script.setAttribute('data-settings', '{"debug":false}');
     document.body.appendChild(script);
   }, []);
 
