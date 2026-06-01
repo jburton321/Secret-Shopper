@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import {
   Check,
   Download,
@@ -17,6 +18,7 @@ import {
 const CERTIFICATE_URL = 'https://directsalesincentives.com/pdfs/MTSS.pdf';
 const CHATTI_WIDGET_SRC =
   'https://get.chattilive.ai/widgets/js/a1df788c-f06e-4d33-a26b-5248bab93bf2';
+const CELEBRATION_SOUND = '/SecretShopper/media/celebration.mp3';
 const HERO_VIDEO = '/SecretShopper/media/HERO.mp4';
 const RESORT_IMG = '/SecretShopper/images/images/resort.jpg';
 
@@ -51,20 +53,119 @@ const STEPS = [
 ];
 
 export default function ThankYouPage() {
-  // Chatti Live Widget — loads only on the TY page
+  const heroRef = useRef<HTMLElement | null>(null);
+
+  // Chatti Live Widget — loads only on the TY page, auto-opens as a
+  // centered modal 1.5 seconds after the page loads.
   useEffect(() => {
-    if (document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) return;
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = CHATTI_WIDGET_SRC;
-    script.setAttribute('data-settings', '{"debug":false}');
-    document.body.appendChild(script);
+    if (!document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = CHATTI_WIDGET_SRC;
+      // Mode is set here so any system- or user-initiated open also uses
+      // the centered modal. Auto-open itself is handled below with a delay.
+      script.setAttribute(
+        'data-settings',
+        '{"debug":false,"openChattiLive":"modal"}',
+      );
+      document.body.appendChild(script);
+    }
+
+    // 1.5-second delay, then poll briefly for the widget's open API and
+    // trigger the centered modal.
+    let opener: number | undefined;
+    const delay = window.setTimeout(() => {
+      let attempts = 0;
+      opener = window.setInterval(() => {
+        attempts += 1;
+        const open = (window as unknown as { OpenChattiLive?: (mode?: string) => void })
+          .OpenChattiLive;
+        if (typeof open === 'function') {
+          open('modal');
+          window.clearInterval(opener);
+        } else if (attempts > 50) {
+          window.clearInterval(opener);
+        }
+      }, 200);
+    }, 1500);
+
+    return () => {
+      window.clearTimeout(delay);
+      if (opener !== undefined) window.clearInterval(opener);
+    };
+  }, []);
+
+  // Center-out confetti explosion on TY-page mount (i.e. right after the
+  // homepage form submit flips us into the thank-you state).
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const colors = ['#E9C52D', '#0f766e', '#1d4ed8', '#ffffff', '#22c55e'];
+
+    const getOrigin = (): { x: number; y: number } => {
+      const el = heroRef.current;
+      if (!el) return { x: 0.5, y: 0.4 };
+      const rect = el.getBoundingClientRect();
+      return {
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height * 0.45) / window.innerHeight,
+      };
+    };
+
+    const burst = (overrides: confetti.Options = {}) => {
+      const origin = getOrigin();
+      confetti({
+        origin,
+        colors,
+        zIndex: 60,
+        scalar: 1,
+        ticks: 240,
+        ...overrides,
+      });
+    };
+
+    // Celebration sound effect, fired in sync with the confetti burst.
+    // The homepage form submit counts as a user gesture, so autoplay is
+    // permitted here.
+    const audio = new Audio(CELEBRATION_SOUND);
+    audio.volume = 0.7;
+    audio.preload = 'auto';
+
+    // Single 360° explosion from the hero center on first paint.
+    const t1 = window.setTimeout(() => {
+      audio.play().catch(() => {
+        // Silently ignore — browser blocked autoplay despite the gesture
+        // (rare). Visual confetti still plays.
+      });
+      burst({
+        particleCount: 220,
+        spread: 360,
+        startVelocity: 55,
+        gravity: 0.85,
+        decay: 0.92,
+      });
+      // Side cannons add the "outward explosion" feel in the same burst.
+      burst({ particleCount: 90, spread: 80, angle: 60, startVelocity: 65 });
+      burst({ particleCount: 90, spread: 80, angle: 120, startVelocity: 65 });
+    }, 250);
+
+    return () => {
+      window.clearTimeout(t1);
+      audio.pause();
+    };
   }, []);
 
   return (
     <>
       {/* Hero confirmation — matches homepage hero pattern (video bg + dark overlay + yellow CTA) */}
-      <section className="relative pt-14 md:pt-20 lg:pt-28 pb-32 md:pb-40 lg:pb-48 overflow-hidden">
+      <section
+        ref={heroRef}
+        className="relative pt-14 md:pt-20 lg:pt-28 pb-32 md:pb-40 lg:pb-48 overflow-hidden"
+      >
         <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-blue-900 to-teal-900">
           <video
             autoPlay
