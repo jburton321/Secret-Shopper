@@ -115,7 +115,9 @@ export default function ThankYouPage() {
       confetti({
         origin,
         colors,
-        zIndex: 60,
+        // Sit above the Chatti modal (third-party widget renders at a
+        // very high z-index); use max 32-bit int so we always win.
+        zIndex: 2147483647,
         scalar: 1,
         ticks: 240,
         ...overrides,
