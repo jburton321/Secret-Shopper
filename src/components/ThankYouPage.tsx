@@ -56,14 +56,12 @@ export default function ThankYouPage() {
   const heroRef = useRef<HTMLElement | null>(null);
 
   // Chatti Live Widget — loads only on the TY page, auto-opens as a
-  // centered modal 1.5 seconds after the page loads.
+  // centered modal as soon as the widget's API is ready.
   useEffect(() => {
     if (!document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) {
       const script = document.createElement('script');
       script.async = true;
       script.src = CHATTI_WIDGET_SRC;
-      // Mode is set here so any system- or user-initiated open also uses
-      // the centered modal. Auto-open itself is handled below with a delay.
       script.setAttribute(
         'data-settings',
         '{"debug":false,"openChattiLive":"modal"}',
@@ -71,27 +69,23 @@ export default function ThankYouPage() {
       document.body.appendChild(script);
     }
 
-    // 1.5-second delay, then poll briefly for the widget's open API and
-    // trigger the centered modal.
-    let opener: number | undefined;
-    const delay = window.setTimeout(() => {
-      let attempts = 0;
-      opener = window.setInterval(() => {
-        attempts += 1;
-        const open = (window as unknown as { OpenChattiLive?: (mode?: string) => void })
-          .OpenChattiLive;
-        if (typeof open === 'function') {
-          open('modal');
-          window.clearInterval(opener);
-        } else if (attempts > 50) {
-          window.clearInterval(opener);
-        }
-      }, 200);
-    }, 1500);
+    // Poll briefly for the widget's open API and trigger the centered
+    // modal as soon as it's available.
+    let attempts = 0;
+    const opener = window.setInterval(() => {
+      attempts += 1;
+      const open = (window as unknown as { OpenChattiLive?: (mode?: string) => void })
+        .OpenChattiLive;
+      if (typeof open === 'function') {
+        open('modal');
+        window.clearInterval(opener);
+      } else if (attempts > 50) {
+        window.clearInterval(opener);
+      }
+    }, 200);
 
     return () => {
-      window.clearTimeout(delay);
-      if (opener !== undefined) window.clearInterval(opener);
+      window.clearInterval(opener);
     };
   }, []);
 
