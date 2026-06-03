@@ -1,0 +1,654 @@
+<!--
+  Secret Shopper Resort Program — Welcome Email
+  ----------------------------------------------
+  Bulletproof email template targeting:
+    - Gmail (web, Android, iOS)
+    - Apple Mail (macOS, iOS)
+    - Yahoo Mail
+    - Outlook 2016 / 2019 / 2021 (Windows desktop)
+
+  Built directly from Figma node `36:619` of
+  `ShareLife-Secret-Shopper-Virtual-Travel-Club-Design`
+  (file key `h256vydF2QnvnqbYcZON2Q`).
+
+  Build rules followed:
+    - Table-based layout only — zero divs, no flex, no grid
+    - All CSS inline; <style> in <head> only for resets + media queries
+    - role="presentation" on every layout table
+    - 600px max container width (Figma is 390px mobile-first; we scale up)
+    - Responsive via percentage widths + media query in <head>
+    - No CSS shorthand on margin/padding/border (Outlook breaks)
+    - Web-safe font stacks only (Arial/Helvetica + Georgia for the pull quote)
+    - Every <img> has width, height, display:block, alt, border="0"
+    - MSO conditional comments for Outlook ghost columns + buffers
+
+  Placeholders to substitute before sending:
+    Sarah        — recipient first name (e.g. "Sarah")
+    /email-assets/welcome   — CDN base where the contents of `emails/assets/`
+                            are hosted (no trailing slash). For example:
+                            https://cdn.sharelife.vacations/email/welcome
+    #preferences, #privacy, #terms, #unsubscribe
+    #facebook, #linkedin, #twitter, #instagram
+
+  Asset filenames (all sitting in emails/assets/, downloaded from Figma):
+    logo-header.png        — 641 × 115  (rendered 320 × 58 in the header)
+    hero-luxury.png        — 1600 × 900 (rendered 600 × 240, fullbleed)
+    strip-resort-a.png     — 1600 × 900 (rendered 268 × 180, half-width)
+    strip-beach-a.png      — 1600 × 900 (rendered 268 × 180, half-width)
+    strip-resort-b.png     — 1600 × 900 (rendered 552 × 280, fullbleed)
+    strip-beach-b.png      — 1600 × 900 (rendered 552 × 280, fullbleed)
+    partner-atlantis.png, partner-dreams.png, partner-sandals.png,
+    partner-lifestyle.png, partner-vidanta.png, partner-secrets.png
+    logo-footer.png        — 641 × 115  (rendered 160 × 29, opacity 0.7)
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="x-apple-disable-message-reformatting" />
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no" />
+  <meta name="color-scheme" content="light only" />
+  <meta name="supported-color-schemes" content="light only" />
+  <title>Welcome to the Secret Shopper Resort Program</title>
+
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <style type="text/css">
+    table, td, div, h1, h2, h3, p, a, span { font-family: Arial, Helvetica, sans-serif !important; }
+  </style>
+  <![endif]-->
+
+  <style type="text/css">
+    /* ---------- Resets ---------- */
+    html, body { margin: 0 !important; padding: 0 !important; height: 100% !important; width: 100% !important; }
+    body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-line-height-rule: exactly; background-color: #fafafa; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; display: block; }
+    a { text-decoration: none; }
+    p { margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; }
+    .body-bg { background-color: #fafafa; }
+
+    /* ---------- Mobile ---------- */
+    @media screen and (max-width: 620px) {
+      .container { width: 100% !important; max-width: 100% !important; }
+      .stack { display: block !important; width: 100% !important; max-width: 100% !important; }
+      .stack-spacer { display: block !important; width: 100% !important; height: 16px !important; line-height: 16px !important; font-size: 0 !important; }
+      .px-24 { padding-left: 20px !important; padding-right: 20px !important; }
+      .px-16 { padding-left: 12px !important; padding-right: 12px !important; }
+      .h1 { font-size: 26px !important; line-height: 32px !important; }
+      .h2 { font-size: 22px !important; line-height: 28px !important; }
+      .quote { font-size: 17px !important; line-height: 27px !important; }
+      .hero-img { height: auto !important; }
+      .img-fluid { width: 100% !important; height: auto !important; max-width: 100% !important; }
+      .card { padding-left: 18px !important; padding-right: 18px !important; }
+      .partner-row .stack { padding-top: 14px !important; padding-bottom: 14px !important; }
+      .step-num { font-size: 28px !important; }
+      .footer-link { padding-left: 8px !important; padding-right: 8px !important; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .body-bg { background-color: #fafafa !important; }
+    }
+  </style>
+</head>
+
+<body class="body-bg" style="margin:0;padding:0;width:100%;background-color:#fafafa;">
+  <!-- Pre-header: shows after subject line in inboxes; hidden in body. -->
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="display:none;max-height:0;overflow:hidden;mso-hide:all;width:0;height:0;">
+    <tr>
+      <td style="font-size:1px;line-height:1px;color:#fafafa;mso-hide:all;">
+        Your access to complimentary luxury resort stays starts now. Here&rsquo;s what to expect next.
+        &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp; &#847; &zwnj; &nbsp;
+      </td>
+    </tr>
+  </table>
+
+  <!-- Outer wrapper -->
+  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="body-bg" style="background-color:#fafafa;">
+    <tr>
+      <td align="center" valign="top" style="padding-top:24px;padding-right:0;padding-bottom:24px;padding-left:0;">
+
+        <!--[if mso]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;"><tr><td valign="top">
+        <![endif]-->
+
+        <!-- 600px container -->
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" class="container" style="width:100%;max-width:600px;background-color:#ffffff;">
+
+          <!-- ============================================================
+               1. HEADER — navy gradient + Secret Shopper logo (Figma 36:621)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="middle" bgcolor="#1e3a5f" style="padding-top:32px;padding-right:24px;padding-bottom:32px;padding-left:24px;background-color:#1e3a5f;background-image:linear-gradient(130deg,#1e3a5f 0%,#2d5a8e 100%);">
+              <!--[if mso]>
+              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:122px;">
+                <v:fill type="tile" color="#1e3a5f" />
+                <v:textbox inset="0,0,0,0">
+              <![endif]-->
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" valign="middle">
+                    <img src="/email-assets/welcome/logo-header.png" width="88" height="88" alt="Secret Shopper Resort Program" style="display:block;border:0;outline:none;text-decoration:none;width:88px;max-width:88px;height:88px;" />
+                  </td>
+                </tr>
+              </table>
+              <!--[if mso]></v:textbox></v:rect><![endif]-->
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               2. HERO IMAGE — Luxury Resort Experience (Figma 36:623)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" style="font-size:0;line-height:0;">
+              <img src="/email-assets/welcome/hero-luxury.png" width="600" height="240" alt="Luxury beachfront resort at sunset" class="img-fluid hero-img" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:600px;height:240px;object-fit:cover;" />
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               3. WELCOME HEADING + INTRO COPY (Figma 36:624..36:628)
+               ============================================================ -->
+          <tr>
+            <td align="left" valign="top" class="px-24" style="padding-top:40px;padding-right:24px;padding-bottom:8px;padding-left:24px;background-color:#ffffff;">
+              <h1 class="h1" style="margin-top:0;margin-right:0;margin-bottom:16px;margin-left:0;font-family:Arial,Helvetica,sans-serif;font-size:28px;line-height:35px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.5px;">
+                Welcome, Sarah!
+              </h1>
+              <p style="margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:27px;color:#4a5568;">
+                You&rsquo;ve just unlocked access to the most exclusive resort evaluation program. Get ready for complimentary luxury stays at world-class destinations.
+              </p>
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               4. IMAGE STRIP A — 2 resort/beach photos (Figma 36:629..631)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" class="px-24" style="padding-top:8px;padding-right:24px;padding-bottom:8px;padding-left:24px;background-color:#ffffff;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="width:100%;">
+                <tr>
+                  <!--[if mso]>
+                  <td valign="top" width="266" style="width:266px;padding:0;">
+                  <![endif]-->
+                  <td class="stack" valign="top" width="50%" style="width:50%;padding:0;">
+                    <img src="/email-assets/welcome/strip-resort-a.png" width="268" height="180" alt="Beachfront resort pool" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:268px;height:180px;object-fit:cover;border-radius:8px;" />
+                  </td>
+                  <!--[if mso]></td><td valign="top" width="20" style="width:20px;font-size:0;line-height:0;">&nbsp;</td><td valign="top" width="266" style="width:266px;padding:0;"><![endif]-->
+                  <td class="stack-spacer" width="16" style="width:16px;font-size:0;line-height:0;">&nbsp;</td>
+                  <td class="stack" valign="top" width="50%" style="width:50%;padding:0;">
+                    <img src="/email-assets/welcome/strip-beach-a.png" width="268" height="180" alt="Couple relaxing on the beach" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:268px;height:180px;object-fit:cover;border-radius:8px;" />
+                  </td>
+                  <!--[if mso]></td><![endif]-->
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               5. WHAT'S INCLUDED — 2x2 benefit cards (Figma 36:632..667)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" bgcolor="#f8fafc" class="px-24" style="padding-top:40px;padding-right:24px;padding-bottom:40px;padding-left:24px;background-color:#f8fafc;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" valign="top" style="padding-bottom:12px;">
+                    <h2 class="h2" style="margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:31px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.5px;text-align:center;">
+                      What&rsquo;s Included
+                    </h2>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" valign="top" style="padding-bottom:36px;">
+                    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#64748b;text-align:center;">
+                      Everything you need for an exceptional experience
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                    <!-- Row 1: Complimentary Resort Stays | Priority Access -->
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td class="stack" valign="top" width="50%" style="width:50%;padding-right:8px;">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="background-color:#ffffff;border-radius:8px;box-shadow:0 1px 1.5px rgba(0,0,0,0.06);">
+                            <tr>
+                              <td class="card" valign="top" style="padding-top:24px;padding-right:20px;padding-bottom:24px;padding-left:20px;">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td align="center" valign="middle" width="48" height="48" bgcolor="#e0f2fe" style="width:48px;height:48px;background-color:#e0f2fe;border-radius:12px;font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:bold;color:#0284c7;line-height:48px;">
+                                      &#9733;
+                                    </td>
+                                  </tr>
+                                </table>
+                                <h3 style="margin:24px 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:22px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.3px;">
+                                  Complimentary Resort Stays
+                                </h3>
+                                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#64748b;">
+                                  Experience luxury accommodations at world-class destinations
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td class="stack-spacer" width="16" style="width:16px;font-size:0;line-height:0;">&nbsp;</td>
+                        <td class="stack" valign="top" width="50%" style="width:50%;padding-left:8px;">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="background-color:#ffffff;border-radius:8px;box-shadow:0 1px 1.5px rgba(0,0,0,0.06);">
+                            <tr>
+                              <td class="card" valign="top" style="padding-top:24px;padding-right:20px;padding-bottom:24px;padding-left:20px;">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td align="center" valign="middle" width="48" height="48" bgcolor="#e0f2fe" style="width:48px;height:48px;background-color:#e0f2fe;border-radius:12px;font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:bold;color:#0284c7;line-height:48px;">
+                                      &rarr;
+                                    </td>
+                                  </tr>
+                                </table>
+                                <h3 style="margin:24px 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:22px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.3px;">
+                                  Priority Access
+                                </h3>
+                                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#64748b;">
+                                  First selection on newly available assignments
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr><td class="stack-spacer" height="16" style="height:16px;font-size:0;line-height:0;">&nbsp;</td></tr>
+                <tr>
+                  <td valign="top">
+                    <!-- Row 2: VIP Treatment | Global Network -->
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td class="stack" valign="top" width="50%" style="width:50%;padding-right:8px;">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="background-color:#ffffff;border-radius:8px;box-shadow:0 1px 1.5px rgba(0,0,0,0.06);">
+                            <tr>
+                              <td class="card" valign="top" style="padding-top:24px;padding-right:20px;padding-bottom:24px;padding-left:20px;">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td align="center" valign="middle" width="48" height="48" bgcolor="#e0f2fe" style="width:48px;height:48px;background-color:#e0f2fe;border-radius:12px;font-family:Arial,Helvetica,sans-serif;font-size:22px;color:#0284c7;line-height:48px;">
+                                      &#9670;
+                                    </td>
+                                  </tr>
+                                </table>
+                                <h3 style="margin:24px 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:22px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.3px;">
+                                  VIP Treatment
+                                </h3>
+                                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#64748b;">
+                                  Premium amenities and room upgrades included
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td class="stack-spacer" width="16" style="width:16px;font-size:0;line-height:0;">&nbsp;</td>
+                        <td class="stack" valign="top" width="50%" style="width:50%;padding-left:8px;">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff" style="background-color:#ffffff;border-radius:8px;box-shadow:0 1px 1.5px rgba(0,0,0,0.06);">
+                            <tr>
+                              <td class="card" valign="top" style="padding-top:24px;padding-right:20px;padding-bottom:24px;padding-left:20px;">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                  <tr>
+                                    <td align="center" valign="middle" width="48" height="48" bgcolor="#e0f2fe" style="width:48px;height:48px;background-color:#e0f2fe;border-radius:12px;font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:bold;color:#0284c7;line-height:48px;">
+                                      &bull;
+                                    </td>
+                                  </tr>
+                                </table>
+                                <h3 style="margin:24px 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:22px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.3px;">
+                                  Global Network
+                                </h3>
+                                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#64748b;">
+                                  Access to exclusive resorts across the globe
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               6. PARTNERS — Trusted By / 2x3 logo grid (Figma 36:668..687)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" bgcolor="#ffffff" class="px-24" style="padding-top:40px;padding-right:24px;padding-bottom:40px;padding-left:24px;background-color:#ffffff;">
+              <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;font-weight:bold;color:#64748b;letter-spacing:2px;text-align:center;text-transform:uppercase;">
+                Trusted By
+              </p>
+              <h2 class="h2" style="margin-top:0;margin-right:0;margin-bottom:36px;margin-left:0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:31px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.5px;text-align:center;">
+                Our Prestigious Partners
+              </h2>
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="partner-row">
+                <tr>
+                  <td class="stack" align="center" valign="middle" width="33%" style="width:33.33%;padding-top:22px;padding-right:8px;padding-bottom:22px;padding-left:8px;">
+                    <img src="/email-assets/welcome/partner-atlantis.png" width="120" height="28" alt="Atlantis Paradise Island" style="display:block;border:0;outline:none;text-decoration:none;width:120px;max-width:120px;height:auto;margin:0 auto;" />
+                  </td>
+                  <td class="stack" align="center" valign="middle" width="33%" style="width:33.33%;padding-top:8px;padding-right:8px;padding-bottom:8px;padding-left:8px;">
+                    <img src="/email-assets/welcome/partner-dreams.png" width="120" height="56" alt="Dreams Resorts &amp; Spas" style="display:block;border:0;outline:none;text-decoration:none;width:120px;max-width:120px;height:auto;margin:0 auto;" />
+                  </td>
+                  <td class="stack" align="center" valign="middle" width="33%" style="width:33.33%;padding-top:18px;padding-right:8px;padding-bottom:18px;padding-left:8px;">
+                    <img src="/email-assets/welcome/partner-sandals.png" width="120" height="36" alt="Sandals Resorts" style="display:block;border:0;outline:none;text-decoration:none;width:120px;max-width:120px;height:auto;margin:0 auto;" />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="stack" align="center" valign="middle" width="33%" style="width:33.33%;padding-top:25px;padding-right:8px;padding-bottom:25px;padding-left:8px;">
+                    <img src="/email-assets/welcome/partner-lifestyle.png" width="120" height="24" alt="Lifestyle Holidays" style="display:block;border:0;outline:none;text-decoration:none;width:120px;max-width:120px;height:auto;margin:0 auto;" />
+                  </td>
+                  <td class="stack" align="center" valign="middle" width="33%" style="width:33.33%;padding-top:23px;padding-right:8px;padding-bottom:23px;padding-left:8px;">
+                    <img src="/email-assets/welcome/partner-vidanta.png" width="120" height="28" alt="Vidanta Resorts" style="display:block;border:0;outline:none;text-decoration:none;width:120px;max-width:120px;height:auto;margin:0 auto;" />
+                  </td>
+                  <td class="stack" align="center" valign="middle" width="33%" style="width:33.33%;padding-top:8px;padding-right:8px;padding-bottom:8px;padding-left:8px;">
+                    <img src="/email-assets/welcome/partner-secrets.png" width="120" height="58" alt="Secrets Resorts &amp; Spas" style="display:block;border:0;outline:none;text-decoration:none;width:120px;max-width:120px;height:auto;margin:0 auto;" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               7. IMAGE STRIP B — 2 resort/beach photos (Figma 36:688..690)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" class="px-16" style="padding-top:8px;padding-right:16px;padding-bottom:8px;padding-left:16px;background-color:#ffffff;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td class="stack" valign="top" width="50%" style="width:50%;padding:0;">
+                    <img src="/email-assets/welcome/strip-resort-a.png" width="276" height="180" alt="Beachfront resort pool" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:276px;height:180px;object-fit:cover;border-radius:8px;" />
+                  </td>
+                  <td class="stack-spacer" width="16" style="width:16px;font-size:0;line-height:0;">&nbsp;</td>
+                  <td class="stack" valign="top" width="50%" style="width:50%;padding:0;">
+                    <img src="/email-assets/welcome/strip-beach-a.png" width="276" height="180" alt="Couple relaxing on the beach" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:276px;height:180px;object-fit:cover;border-radius:8px;" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               8. EVALUATE. EXPERIENCE. ENJOY. (Figma 36:691..697)
+               ============================================================ -->
+          <tr>
+            <td align="left" valign="top" class="px-24" style="padding-top:80px;padding-right:24px;padding-bottom:28px;padding-left:24px;background-color:#ffffff;">
+              <h2 class="h2" style="margin-top:0;margin-right:0;margin-bottom:15px;margin-left:0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:31px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.5px;">
+                Evaluate. Experience. Enjoy.
+              </h2>
+              <p style="margin:0 0 15px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:26px;color:#64748b;">
+                As a Secret Shopper, you&rsquo;ll provide valuable feedback while experiencing the finest resorts. Your insights help improve guest experiences while you enjoy complimentary luxury stays.
+              </p>
+              <img src="/email-assets/welcome/strip-resort-b.png" width="552" height="280" alt="Couple unwinding by an infinity pool" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:552px;height:280px;object-fit:cover;border-radius:12px;" />
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               9. TESTIMONIAL — navy gradient + pull quote (Figma 36:698..708)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" bgcolor="#1e3a5f" class="px-24" style="padding-top:50px;padding-right:24px;padding-bottom:51px;padding-left:24px;background-color:#1e3a5f;background-image:linear-gradient(130deg,#0f2744 0%,#1e3a5f 50%,#2d5a8e 100%);">
+              <!--[if mso]>
+              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:340px;">
+                <v:fill type="tile" color="#1e3a5f" />
+                <v:textbox inset="0,0,0,0">
+              <![endif]-->
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" valign="top" style="font-family:Georgia,'Times New Roman',serif;font-size:80px;line-height:80px;font-weight:bold;color:#ffffff;opacity:0.12;mso-line-height-rule:exactly;">
+                    &ldquo;
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" valign="top" style="padding-top:0;padding-bottom:0;">
+                    <p class="quote" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:19px;line-height:30px;font-style:italic;color:#ffffff;letter-spacing:0.2px;text-align:center;">
+                      From the Maldives to Santorini, I&rsquo;ve evaluated 23 five-star properties in 18 months. What started as curiosity became my dream lifestyle&mdash; experiencing world-class hospitality while shaping the future of luxury travel.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" valign="top" style="padding-top:40px;">
+                    <p style="margin:0 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:22px;font-weight:bold;color:#ffffff;letter-spacing:0.5px;text-align:center;">
+                      Sarah Mitchell
+                    </p>
+                    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:18px;color:rgba(255,255,255,0.7);letter-spacing:1.5px;text-align:center;text-transform:uppercase;">
+                      Elite Evaluator &bull; 2 Years
+                    </p>
+                  </td>
+                </tr>
+              </table>
+              <!--[if mso]></v:textbox></v:rect><![endif]-->
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               10. YOUR NEXT STEPS — 3 numbered rows (Figma 36:709..735)
+               ============================================================ -->
+          <tr>
+            <td align="left" valign="top" bgcolor="#f8fafc" class="px-24" style="padding-top:39px;padding-right:24px;padding-bottom:39px;padding-left:24px;background-color:#f8fafc;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" valign="top" style="padding-bottom:34px;">
+                    <h2 class="h2" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:31px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.5px;text-align:center;">
+                      Your Next Steps
+                    </h2>
+                  </td>
+                </tr>
+
+                <!-- Step 1 -->
+                <tr>
+                  <td valign="top" style="padding-bottom:24px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td valign="top" width="48" style="width:48px;font-family:Arial,Helvetica,sans-serif;font-size:32px;line-height:32px;font-weight:bold;color:#cbd5e1;">
+                          1
+                        </td>
+                        <td valign="top" width="20" style="width:20px;font-size:0;line-height:0;">&nbsp;</td>
+                        <td valign="top">
+                          <h3 style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.3px;">
+                            We&rsquo;ll Contact You
+                          </h3>
+                          <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:25px;color:#64748b;">
+                            Our team will reach out <span style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;color:#2563eb;">within 48 hours</span> to discuss your first assignment
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Step 2 -->
+                <tr>
+                  <td valign="top" style="padding-bottom:24px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td valign="top" width="48" style="width:48px;font-family:Arial,Helvetica,sans-serif;font-size:32px;line-height:32px;font-weight:bold;color:#cbd5e1;">
+                          2
+                        </td>
+                        <td valign="top" width="20" style="width:20px;font-size:0;line-height:0;">&nbsp;</td>
+                        <td valign="top">
+                          <h3 style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.3px;">
+                            Receive Your Gift Card
+                          </h3>
+                          <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:25px;color:#64748b;">
+                            Watch for your <span style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;color:#2563eb;">$50 welcome gift</span> arriving within 24 hours
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Step 3 -->
+                <tr>
+                  <td valign="top">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td valign="top" width="48" style="width:48px;font-family:Arial,Helvetica,sans-serif;font-size:32px;line-height:32px;font-weight:bold;color:#cbd5e1;">
+                          3
+                        </td>
+                        <td valign="top" width="20" style="width:20px;font-size:0;line-height:0;">&nbsp;</td>
+                        <td valign="top">
+                          <h3 style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.3px;">
+                            Choose Your Destination
+                          </h3>
+                          <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:25px;color:#64748b;">
+                            Select your <span style="font-family:Arial,Helvetica,sans-serif;font-weight:bold;color:#2563eb;">ideal travel dates</span> and preferred resort location
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               11. IMAGE STRIP C — 2 resort/beach photos (Figma 36:736..738)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" class="px-24" style="padding-top:8px;padding-right:24px;padding-bottom:8px;padding-left:24px;background-color:#ffffff;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td class="stack" valign="top" width="50%" style="width:50%;padding:0;">
+                    <img src="/email-assets/welcome/strip-resort-a.png" width="268" height="180" alt="Beachfront resort pool" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:268px;height:180px;object-fit:cover;border-radius:8px;" />
+                  </td>
+                  <td class="stack-spacer" width="16" style="width:16px;font-size:0;line-height:0;">&nbsp;</td>
+                  <td class="stack" valign="top" width="50%" style="width:50%;padding:0;">
+                    <img src="/email-assets/welcome/strip-beach-a.png" width="268" height="180" alt="Couple relaxing on the beach" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:268px;height:180px;object-fit:cover;border-radius:8px;" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               12. JOIN ELITE TRAVELERS (Figma 36:739..745)
+               ============================================================ -->
+          <tr>
+            <td align="left" valign="top" class="px-24" style="padding-top:80px;padding-right:24px;padding-bottom:68px;padding-left:24px;background-color:#ffffff;">
+              <h2 class="h2" style="margin-top:0;margin-right:0;margin-bottom:24px;margin-left:0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:31px;font-weight:bold;color:#1a1a1a;letter-spacing:-0.5px;">
+                Join Elite Travelers
+              </h2>
+              <p style="margin:0 0 24px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:26px;color:#64748b;">
+                You&rsquo;re now part of an exclusive community of discerning travelers who shape the future of luxury hospitality. Your feedback matters.
+              </p>
+              <img src="/email-assets/welcome/strip-beach-b.png" width="552" height="280" alt="Happy couple enjoying their resort vacation" class="img-fluid" style="display:block;border:0;outline:none;text-decoration:none;width:100%;max-width:552px;height:280px;object-fit:cover;border-radius:12px;" />
+            </td>
+          </tr>
+
+          <!-- ============================================================
+               13. FOOTER — logo + links + socials + copyright (Figma 36:746..782)
+               ============================================================ -->
+          <tr>
+            <td align="center" valign="top" bgcolor="#f8fafc" class="px-24" style="padding-top:40px;padding-right:24px;padding-bottom:32px;padding-left:24px;background-color:#f8fafc;border-top:1px solid #e2e8f0;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <!-- Footer logo -->
+                <tr>
+                  <td align="center" valign="top" style="padding-bottom:24px;">
+                    <img src="/email-assets/welcome/logo-footer.png" width="56" height="56" alt="Secret Shopper Resort Program" style="display:block;border:0;outline:none;text-decoration:none;width:56px;max-width:56px;height:56px;margin:0 auto;opacity:0.85;" />
+                  </td>
+                </tr>
+                <!-- Legal links -->
+                <tr>
+                  <td align="center" valign="middle" style="padding-bottom:8px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;color:#64748b;">
+                    <a class="footer-link" href="#preferences" style="color:#64748b;text-decoration:none;padding-left:6px;padding-right:6px;">Preferences</a>
+                    <span style="color:#cbd5e1;">&bull;</span>
+                    <a class="footer-link" href="#privacy" style="color:#64748b;text-decoration:none;padding-left:6px;padding-right:6px;">Privacy</a>
+                    <span style="color:#cbd5e1;">&bull;</span>
+                    <a class="footer-link" href="#terms" style="color:#64748b;text-decoration:none;padding-left:6px;padding-right:6px;">Terms</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" valign="middle" style="padding-bottom:32px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;color:#64748b;">
+                    <a class="footer-link" href="#unsubscribe" style="color:#64748b;text-decoration:none;">Unsubscribe</a>
+                  </td>
+                </tr>
+                <!-- Connect with us divider -->
+                <tr>
+                  <td valign="top" style="border-top:1px solid #e2e8f0;padding-top:24px;">
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tr>
+                        <td align="center" valign="top" style="padding-bottom:16px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:18px;color:#64748b;letter-spacing:0.5px;">
+                          Connect with us
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" valign="middle">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td valign="middle" style="padding-left:6px;padding-right:6px;">
+                                <a href="#facebook" style="text-decoration:none;">
+                                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                      <td align="center" valign="middle" width="36" height="36" bgcolor="#e2e8f0" style="width:36px;height:36px;background-color:#e2e8f0;border-radius:18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#475569;line-height:36px;">f</td>
+                                    </tr>
+                                  </table>
+                                </a>
+                              </td>
+                              <td valign="middle" style="padding-left:6px;padding-right:6px;">
+                                <a href="#linkedin" style="text-decoration:none;">
+                                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                      <td align="center" valign="middle" width="36" height="36" bgcolor="#e2e8f0" style="width:36px;height:36px;background-color:#e2e8f0;border-radius:18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#475569;line-height:36px;">in</td>
+                                    </tr>
+                                  </table>
+                                </a>
+                              </td>
+                              <td valign="middle" style="padding-left:6px;padding-right:6px;">
+                                <a href="#twitter" style="text-decoration:none;">
+                                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                      <td align="center" valign="middle" width="36" height="36" bgcolor="#e2e8f0" style="width:36px;height:36px;background-color:#e2e8f0;border-radius:18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#475569;line-height:36px;">X</td>
+                                    </tr>
+                                  </table>
+                                </a>
+                              </td>
+                              <td valign="middle" style="padding-left:6px;padding-right:6px;">
+                                <a href="#instagram" style="text-decoration:none;">
+                                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                      <td align="center" valign="middle" width="36" height="36" bgcolor="#e2e8f0" style="width:36px;height:36px;background-color:#e2e8f0;border-radius:18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#475569;line-height:36px;">IG</td>
+                                    </tr>
+                                  </table>
+                                </a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <!-- Copyright -->
+                <tr>
+                  <td align="center" valign="top" style="padding-top:32px;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:19px;color:#94a3b8;">
+                    &copy; 2024 Secret Shopper Resort Program. All rights reserved.<br />
+                    You&rsquo;re receiving this because you opted in to our program.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+
+        <!--[if mso]>
+        </td></tr></table>
+        <![endif]-->
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
