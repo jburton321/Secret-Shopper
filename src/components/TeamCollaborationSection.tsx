@@ -60,6 +60,9 @@ const TeamCollaborationSection = () => {
               <img
                 src="/SecretShopper/images/Misc-graphics/Map-Mexico-8.png"
                 alt=""
+                loading="lazy"
+                decoding="async"
+                aria-hidden="true"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -104,6 +107,8 @@ const TeamCollaborationSection = () => {
                       <img
                         src="/SecretShopper/images/images/resort.jpg"
                         alt="Luxury Resort"
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -128,6 +133,8 @@ const TeamCollaborationSection = () => {
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>

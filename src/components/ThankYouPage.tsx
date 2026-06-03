@@ -229,7 +229,7 @@ export default function ThankYouPage() {
             <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-stretch">
               {/* Left: Resort hero image */}
               <div className="relative rounded-xl md:rounded-2xl shadow-2xl overflow-hidden min-h-[260px] md:min-h-[320px]">
-                <img src={RESORT_IMG} alt="Luxury Resort" className="w-full h-full object-cover" />
+                <img src={RESORT_IMG} alt="Luxury Resort" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
                 <div className="absolute bottom-4 left-0 right-0 z-10 text-center px-4">
                   <h3 className="text-white text-base md:text-lg font-bold drop-shadow-lg">

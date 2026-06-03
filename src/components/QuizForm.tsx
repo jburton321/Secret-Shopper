@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Loader2, Gift, MapPin, CheckCircle } from 'lucide-react';
-import { submitLead } from '../lib/supabase';
+import { Gift, MapPin, CheckCircle } from 'lucide-react';
 
 interface QuizFormProps {
-  onSubmitted?: () => void;
+  onSubmitted?: (lead: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+  }) => void;
 }
 
 type VacationWith = 'My spouse or partner' | 'My spouse and/or my children' | 'I vacation with my friends' | 'I travel alone';
@@ -32,8 +36,6 @@ interface FormData {
 export default function QuizForm({ onSubmitted }: QuizFormProps) {
   const [showForm, setShowForm] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const [formData, setFormData] = useState<FormData>({
     first_name: '',
@@ -96,7 +98,12 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmitted?.();
+    onSubmitted?.({
+      firstName: formData.first_name,
+      lastName: formData.last_name,
+      email: formData.email,
+      phone: formData.mobile_phone,
+    });
   };
 
   if (!showForm) {
@@ -524,34 +531,20 @@ export default function QuizForm({ onSubmitted }: QuizFormProps) {
               </label>
             </div>
 
-            {error && (
-              <div className="bg-red-50 border-2 border-red-500 p-3 sm:p-4 rounded-lg">
-                <p className="text-red-700 font-semibold text-sm sm:text-base">{error}</p>
-              </div>
-            )}
-
             <div className="flex gap-3">
               <button
                 type="button"
                 onClick={handleBack}
                 className="flex-1 bg-gray-300 text-gray-700 font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-gray-400 transition-colors duration-200"
-                disabled={isSubmitting}
               >
                 ← BACK
               </button>
               <button
                 type="submit"
-                disabled={!formData.consent_terms_1 || !formData.consent_terms_2 || !formData.consent_terms_3 || isSubmitting}
-                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg flex items-center justify-center gap-2"
+                disabled={!formData.consent_terms_1 || !formData.consent_terms_2 || !formData.consent_terms_3}
+                className="flex-1 bg-[#E9C52D] text-black font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-[#1E3A5F] hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg"
               >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    SUBMITTING...
-                  </>
-                ) : (
-                  'SUBMIT'
-                )}
+                SUBMIT
               </button>
             </div>
           </div>

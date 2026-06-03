@@ -1,10 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Phone, Check, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Star, Clock, Ship, Search, MessageSquare, Gift, Award, Shield, TrendingUp, Hotel, Users, Calendar, Palmtree, Sparkles, DollarSign, MapPin, HelpCircle, Lightbulb, CheckCircle, Building2, Plane, KeyRound, FileCheck, PartyPopper, UtensilsCrossed } from 'lucide-react';
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
+import { Phone, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Star, Search, MessageSquare, Gift, Award, Shield, Hotel, Users, Calendar, Sparkles, HelpCircle, Lightbulb, CheckCircle, Plane, KeyRound, FileCheck, UtensilsCrossed } from 'lucide-react';
 import QuizForm from './components/QuizForm';
 import TeamCollaborationSection from './components/TeamCollaborationSection';
-import ThankYouPage from './components/ThankYouPage';
-import TermsPage from './components/TermsPage';
-import PrivacyPage from './components/PrivacyPage';
+
+// Code-split routes/states that aren't part of the initial landing render.
+// ThankYouPage only renders after the quiz is submitted; Terms & Privacy
+// are separate routes. Splitting them shaves a meaningful chunk off the
+// landing-page bundle and lets the browser parse less JS up front.
+const ThankYouPage = lazy(() => import('./components/ThankYouPage'));
+const TermsPage = lazy(() => import('./components/TermsPage'));
+const PrivacyPage = lazy(() => import('./components/PrivacyPage'));
 
 const CHATTI_WIDGET_SRC =
   'https://get.chattilive.ai/widgets/js/a1df788c-f06e-4d33-a26b-5248bab93bf2';
@@ -43,23 +48,38 @@ function App() {
     }
   }, [submitted]);
 
-  // Eagerly load the Chatti widget on app mount so its API is fully
-  // initialized by the time the user finishes the quiz. The auto-rendered
-  // launcher is hidden by a CSS rule in index.html until the TY page
-  // reveals it.
+  // Eagerly load the Chatti widget on app mount with:
+  //   - openChattiLive: 'sidebar'     → launcher click defaults to the side
+  //                                     drawer (Chatti's term is "sidebar";
+  //                                     "drawer" is not a valid value).
+  //   - openChattiLiveState: 'close'  → disable Chatti's auto-pop on first
+  //                                     load. The home page should never
+  //                                     auto-open the chat; the user must
+  //                                     click the launcher.
+  // The TY page still calls `OpenChattiLive('modal')` explicitly to auto-pop
+  // the modal there. That goes through `chattiLive.chat._openInMode(...)`,
+  // which is independent of `openChattiLiveState`, so the TY behavior is
+  // unaffected by disabling auto-open here.
   useEffect(() => {
+    if (typeof document === 'undefined') return;
     if (document.querySelector(`script[src="${CHATTI_WIDGET_SRC}"]`)) return;
+
     const script = document.createElement('script');
     script.async = true;
     script.src = CHATTI_WIDGET_SRC;
     script.setAttribute(
       'data-settings',
-      '{"debug":false,"openChattiLive":"modal"}',
+      '{"debug":false,"openChattiLive":"sidebar","openChattiLiveState":"close"}',
     );
     document.body.appendChild(script);
   }, []);
 
-  const handleSubmitted = () => {
+  const handleSubmitted = (_lead: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+  }) => {
     setSubmitted(true);
     if (typeof window === 'undefined') return;
 
@@ -227,11 +247,19 @@ function App() {
   ];
 
   if (pathname === '/terms') {
-    return <TermsPage onNavigate={navigate} />;
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-tan-50" />}>
+        <TermsPage onNavigate={navigate} />
+      </Suspense>
+    );
   }
 
   if (pathname === '/privacy') {
-    return <PrivacyPage onNavigate={navigate} />;
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-tan-50" />}>
+        <PrivacyPage onNavigate={navigate} />
+      </Suspense>
+    );
   }
 
   return (
@@ -242,6 +270,10 @@ function App() {
             <img
               src="/chatti-icon.png"
               alt="Secret Shopper Resort Program"
+              fetchPriority="high"
+              decoding="async"
+              width="56"
+              height="56"
               className="h-12 md:h-14 w-auto object-contain"
             />
           </div>
@@ -253,7 +285,9 @@ function App() {
       </header>
 
       {submitted ? (
-        <ThankYouPage />
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <ThankYouPage />
+        </Suspense>
       ) : (
       <>
       <section className="relative py-12 md:py-16 lg:py-24 pb-28 md:pb-32 lg:pb-36 overflow-visible">
@@ -323,22 +357,22 @@ function App() {
           <p className="text-center text-gray-600 text-xs sm:text-sm tracking-widest mb-6 md:mb-8">50+ PROPERTIES IN MEXICO & THE CARIBBEAN</p>
           <div className="relative">
             <div className="flex gap-12 animate-scroll items-center">
-              <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
-              <img src="/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" loading="lazy" decoding="async" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Mexico.png" alt="Mexico" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
+              <img src="/SecretShopper/images/ResortsLogo/Vidanta.png" alt="Vidanta" loading="lazy" decoding="async" aria-hidden="true" className="h-12 w-32 object-contain grayscale hover:grayscale-0 transition-all duration-300" />
             </div>
           </div>
         </div>
@@ -360,6 +394,8 @@ function App() {
                 <img
                   src={resorts[currentGalleryImage].image}
                   alt={resorts[currentGalleryImage].name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -447,7 +483,7 @@ function App() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="w-full h-full object-cover opacity-100"
           >
             <source src="/SecretShopper/media/HERO.mp4" type="video/mp4" />
@@ -537,6 +573,8 @@ function App() {
                 <img
                   src="/SecretShopper/images/images/resort.jpg"
                   alt="Resort"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
@@ -571,27 +609,27 @@ function App() {
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Sandles.png" alt="Sandals Resorts" loading="lazy" decoding="async" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Caribbean Luxury</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Dreams.png" alt="Dreams Resorts" loading="lazy" decoding="async" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Mexico & Caribbean</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis Paradise" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Atlantis.png" alt="Atlantis Paradise" loading="lazy" decoding="async" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Bahamas</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives Hotels" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/The Fives.png" alt="The Fives Hotels" loading="lazy" decoding="async" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Riviera Maya</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Lifestyle.png" alt="Lifestyle Resorts" loading="lazy" decoding="async" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Caribbean Excellence</p>
                 </div>
                 <div className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-teal-600 transition-colors">
-                  <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets Resorts" className="h-12 w-32 object-contain mb-3" />
+                  <img src="/SecretShopper/images/ResortsLogo/Serets.png" alt="Secrets Resorts" loading="lazy" decoding="async" className="h-12 w-32 object-contain mb-3" />
                   <p className="text-sm text-gray-600 text-center mt-1">Premium All-Inclusive</p>
                 </div>
               </div>
@@ -605,7 +643,7 @@ function App() {
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   className="w-full h-full object-cover"
                 >
                   <source src="/SecretShopper/media/couple.mp4" type="video/mp4" />
@@ -705,6 +743,8 @@ function App() {
                   <img
                     src={resort.image}
                     alt={`${resort.name} Resort`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -712,6 +752,8 @@ function App() {
                     <img
                       src={resort.logo}
                       alt={`${resort.name} Logo`}
+                      loading="lazy"
+                      decoding="async"
                       className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain mb-3 sm:mb-4 md:mb-6 brightness-0 invert"
                     />
                     <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">{resort.name}</h3>
@@ -759,7 +801,7 @@ function App() {
               <div className="group">
                 <div className="relative overflow-hidden bg-gradient-to-br from-teal-600 to-blue-600 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500">
-                    <img src="/SecretShopper/images/images/resort.jpg" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/resort.jpg" alt="" loading="lazy" decoding="async" aria-hidden="true" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-10">
                     <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -775,7 +817,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="/SecretShopper/images/images/Atlantis.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/Atlantis.png" alt="" loading="lazy" decoding="async" aria-hidden="true" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -791,7 +833,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="/SecretShopper/images/images/Secrets.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/Secrets.png" alt="" loading="lazy" decoding="async" aria-hidden="true" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -807,7 +849,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="/SecretShopper/images/images/DREAMS.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/DREAMS.png" alt="" loading="lazy" decoding="async" aria-hidden="true" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -823,7 +865,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="/SecretShopper/images/images/xcaret-mexico.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/xcaret-mexico.png" alt="" loading="lazy" decoding="async" aria-hidden="true" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -839,7 +881,7 @@ function App() {
                 <div className="relative overflow-hidden bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-teal-400 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
-                    <img src="/SecretShopper/images/images/VIDANTA.png" alt="" className="w-full h-full object-cover" />
+                    <img src="/SecretShopper/images/images/VIDANTA.png" alt="" loading="lazy" decoding="async" aria-hidden="true" className="w-full h-full object-cover" />
                   </div>
                   <div className="relative z-20">
                     <div className="w-16 h-16 bg-teal-100 group-hover:bg-white/20 rounded-xl flex items-center justify-center mb-6 transition-colors">
@@ -861,6 +903,8 @@ function App() {
           <img
             src="/SecretShopper/images/images/Sandles.png"
             alt="Sandals Resort Background"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-slate-900/85"></div>
@@ -958,7 +1002,7 @@ function App() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="w-full h-full object-cover opacity-100"
           >
             <source src="/SecretShopper/media/FinalCTA.mp4" type="video/mp4" />
@@ -972,6 +1016,8 @@ function App() {
               <img
                 src="/chatti-icon.png"
                 alt="Secret Shopper Program"
+                loading="lazy"
+                decoding="async"
                 className="h-20 sm:h-24 md:h-28 w-auto object-contain"
               />
             </div>
@@ -994,6 +1040,9 @@ function App() {
           <img
             src="/SecretShopper/images/Misc-graphics/Vector-Object.png"
             alt=""
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
             className="w-full h-auto block"
           />
         </div>
@@ -1008,6 +1057,8 @@ function App() {
             <img
               src="/chatti-icon.png"
               alt="Secret Shopper Resort Program"
+              loading="lazy"
+              decoding="async"
               className="h-20 md:h-24 w-auto object-contain mb-6"
             />
           <div className="text-center">
